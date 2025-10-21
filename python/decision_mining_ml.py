@@ -5,7 +5,6 @@ from typing import Dict, Any, Tuple
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
-import joblib
 from sklearn import tree as sktree
 import matplotlib.pyplot as plt
 from sklearn.tree import export_text, export_graphviz
@@ -170,19 +169,20 @@ class DecisionMiningML:
             eval_default = eval_model(clf, X_test, y_test)
             eval_pruned = eval_model(clf_pruned, X_test, y_test)
 
-            # save models
+            # NOTE: previously models were saved to disk with joblib, but this behavior
+            # was removed. We still keep the trained model objects in memory and include
+            # any exported artifacts (rules, visualizations) below.
             safe_dp = str(dp).replace(' ', '_').replace('/', '_')
-            default_path = os.path.join(self.model_dir, f"dt_default_{safe_dp}.joblib")
-            pruned_path = os.path.join(self.model_dir, f"dt_pruned_{safe_dp}.joblib")
-            joblib.dump({'model': clf, 'meta': meta}, default_path)
-            joblib.dump({'model': clf_pruned, 'meta': meta}, pruned_path)
+            default_path = None
+            pruned_path = None
 
             # prepare result entry
             entry = {
                 'n_samples': int(len(group)),
                 'meta': meta,
-                'default_model': default_path,
-                'pruned_model': pruned_path,
+                # models are kept in-memory only
+                'default_model': None,
+                'pruned_model': None,
                 'eval_default': eval_default,
                 'eval_pruned': eval_pruned,
             }
@@ -239,10 +239,12 @@ class DecisionMiningML:
                 except Exception as e:
                     entry.setdefault('warnings', []).append(f"viz_error: {e}")
 
+            # attach the trained model objects in-memory under a separate key
+            entry['model_objects'] = {'default': clf, 'pruned': clf_pruned}
             results[dp] = entry
 
         return results
 
     def load_model(self, model_path: str):
-        return joblib.load(model_path)
+        raise RuntimeError("Models are not persisted to disk by default. Load from returned 'model_objects' in train_for_all results.")
 
