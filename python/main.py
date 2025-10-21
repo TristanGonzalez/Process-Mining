@@ -1,25 +1,39 @@
-import os
+import yaml
 from data import Data
-import petri
+from petri import Petri
 
 
 
-path1 = "data/running-example.xes"
-path2 = "data/Road_Traffic_Fine_Management_Process.xes"
-path3 = "data/BPI Challenge 2017.xes"
+# ---------------- Load YAML -----------------
+with open("config.yaml", "r") as f:
+    config = yaml.safe_load(f)
 
-path = path1
+log_path = config.get("log_path")
+process_model_type = config.get("process_model_type", "heuristic")
+output_csv = config.get("output_csv", f"{log_path}.csv")
+heuristic_params = config.get("heuristic", {})
+inductive_params = config.get("inductive", {})
 
-data_processor = Data(path=path)
-
+# ---------------- Load log -----------------
+data_processor = Data(path=log_path)
 log = data_processor.load_xes()
-petri_processor = petri.Petri(log)
-petri_processor.create_process_model("heuristic")
+
+# ---------------- Create Petri net -----------------
+petri_processor = Petri(log)
+petri_processor.create_process_model(
+    method=process_model_type,
+    heuristic_params=heuristic_params,
+    inductive_params=inductive_params
+)
 petri_processor.view_process_model()
+
+# ---------------- Find decision points -----------------
 decision_points = petri_processor.find_decision_points()
 
+# ---------------- Create DataFrame -----------------
 df = data_processor.dataframe_from_dp(decision_points)
 
-df.to_csv(f"{path}.csv", index=False, sep=";")
-
-print(df)
+# ---------------- Save CSV -----------------
+df.to_csv(output_csv, index=False, sep=";")
+print(f"DataFrame saved to: {output_csv}")
+print(df.head())

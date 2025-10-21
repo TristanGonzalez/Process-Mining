@@ -1,24 +1,32 @@
 import pm4py
-import pandas as pd
-from pm4py.objects.log.importer.xes import importer as xes_importer
-
+from pm4py.objects.petri_net.obj import PetriNet, Marking
 
 class Petri:
     def __init__(self, log):
-        self.petri = None
-        self.im = None
-        self.fm = None
+        self.petri: PetriNet = None
+        self.im: Marking = None
+        self.fm: Marking = None
         self.log = log
 
-    def create_process_model(self, method):
-        if method == 'alpha':
+    def create_process_model(self, method: str, heuristic_params: dict = None, inductive_params: dict = None):
+        if method == "alpha":
             self.petri, self.im, self.fm = pm4py.discover_petri_net_alpha(log=self.log)
-        elif method == 'heuristic':
-            self.petri, self.im, self.fm = pm4py.discover_petri_net_heuristics(log=self.log)
-        elif method == 'inductive':
-            self.petri, self.im, self.fm = pm4py.discover_petri_net_inductive(log=self.log)
+        elif method == "heuristic":
+            self.petri, self.im, self.fm = pm4py.discover_petri_net_heuristics(
+                log=self.log,
+                dependency_threshold=heuristic_params.get("dependency_threshold", 0.5),
+                and_threshold=heuristic_params.get("and_threshold", 0.65),
+                loop_two_threshold=heuristic_params.get("loop_two_threshold", 0.5),
+            )
+        elif method == "inductive":
+            self.petri, self.im, self.fm = pm4py.discover_petri_net_inductive(
+                log=self.log,
+                multi_processing=inductive_params.get("multi_processing", True),
+                noise_threshold=inductive_params.get("noise_threshold", 0.0),
+                disable_fallthroughs=inductive_params.get("disable_fallthroughs", False),
+            )
         else:
-            raise ValueError("Method not of right kind")
+            raise ValueError("Unknown process discovery method")
 
 
     def view_process_model(self):

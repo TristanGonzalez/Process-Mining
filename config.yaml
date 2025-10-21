@@ -1,0 +1,28 @@
+
+
+# Path to the XES log
+#log_path: "data/running-example.xes"
+log_path: "data/Road_Traffic_Fine_Management_Process.xes"
+#log_path: "data/BPI Challenge 2017.xes"
+
+# Process discovery method: "alpha", "heuristic" or "inductive"
+#process_model_type: "alpha"
+process_model_type: "heuristic"
+#process_model_type: "inductive"
+
+# Output CSV file
+#output_csv: "data/running-example.csv"
+#output_csv: "data/Road_Traffic_Fine_Management_Process.csv"
+output_csv: "data/BPI_Challenge_2017.csv"
+
+# Heuristic parameters (only used if process_model_type == "heuristic")
+heuristic:
+  dependency_threshold: 0.5
+  and_threshold: 0.65
+  loop_two_threshold: 0.5
+
+# Inductive parameters (only used if process_model_type == "inductive")
+inductive:
+  multi_processing: true
+  noise_threshold: 0.0
+  disable_fallthroughs: false
