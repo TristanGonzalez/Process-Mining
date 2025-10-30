@@ -4,6 +4,7 @@ import pandas as pd
 import pickle
 import os
 import re
+from pathlib import Path
 
 class Data:
     def __init__(self, path):
@@ -16,7 +17,9 @@ class Data:
             self.kind = "BPI Challenge 2017"
         else:
             raise ValueError("Dataset Unknown")
-        self.cache_file = os.path.join("data/pkl/" + self.kind + ".pkl")
+        Path("data/pkl").mkdir(parents=True, exist_ok=True)
+        self.cache_file = Path("data") / "pkl" / f"{self.kind}.pkl"
+        # self.cache_file = os.path.join("data/pkl/" + self.kind + ".pkl")
 
     def load_xes(self):
         # Check for cached version
