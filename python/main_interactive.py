@@ -3,10 +3,9 @@ import tempfile
 import streamlit as st
 from data import Data
 from petri import Petri
-import pm4py
 from pm4py.visualization.petri_net import visualizer as pn_visualizer
 from PIL import Image
-import io
+
 
 st.set_page_config(page_title="Interactive Process Mining", layout="wide")
 st.title("Interactive Process Mining Pipeline")

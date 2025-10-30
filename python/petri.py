@@ -19,9 +19,9 @@ class Petri:
                 loop_two_threshold=heuristic_params.get("loop_two_threshold", 0.5),
             )
         elif method == "inductive":
+            print(inductive_params.get("noise_threshold", 0.0))
             self.petri, self.im, self.fm = pm4py.discover_petri_net_inductive(
                 log=self.log,
-                multi_processing=inductive_params.get("multi_processing", True),
                 noise_threshold=inductive_params.get("noise_threshold", 0.0),
                 disable_fallthroughs=inductive_params.get("disable_fallthroughs", False),
             )
@@ -32,128 +32,79 @@ class Petri:
     def view_process_model(self):
         pm4py.view_petri_net(self.petri, self.im, self.fm, log=self.log)
 
-
     def find_decision_points(self):
+        """
+        Algorithm 1: Recursive method for specifying the possible decisions
+        at a decision point in terms of sets of log events.
+        """
         decision_points = {}
 
         for place in self.petri.places:
-            # outgoing transitions from this place
+            # collect outgoing transitions from this place
             outgoing_transitions = [arc.target for arc in self.petri.arcs if arc.source == place]
+
+            # skip if not a decision point
             if len(outgoing_transitions) <= 1:
                 continue
 
-            # Precompute reachability (places) for each outgoing transition
-            reachable_places_per_branch = []
-            for t in outgoing_transitions:
-                rp = self.reachable_places_from_transition(t)
-                reachable_places_per_branch.append(rp)
-
             decision_classes = []
-            empty_count = 0
 
-            for idx, t in enumerate(outgoing_transitions):
-                # When tracing branch idx, provide other branches' reachable sets
-                other_reachable = set().union(*[s for j, s in enumerate(reachable_places_per_branch) if j != idx])
+            # while outgoing edges left (loop over each outgoing transition)
+            for t in outgoing_transitions:
+                current_class = set()
 
+                # if (t ≠ invisible) ∧ (t ≠ duplicate)
                 if self.is_visible(t) and not self.is_duplicate(t):
-                    current = {t.label}
+                    current_class.add(t.label)
                 else:
-                    current = self.trace_decision_class(t, other_reachable, visited=set())
-                if current:
-                    decision_classes.append(current)
-                else:
-                    empty_count += 1
+                    # else currentClass ← traceDecisionClass(t)
+                    current_class = self.trace_decision_class(t)
 
-            if len(decision_classes) > 0:
-                # If some branches had no visible evidence, include explicit tau/do-nothing branch
-                if empty_count > 0:
-                    decision_classes.append({"tau (do nothing)"})
+                # if currentClass ≠ ∅ then add it
+                if current_class:
+                    decision_classes.append(current_class)
+
+            # add to result if we found any decision classes
+            if len(decision_classes) > 1 :
                 decision_points[place.name] = decision_classes
 
         return decision_points
 
-    def reachable_places_from_transition(self, t_start):
+    def trace_decision_class(self, t):
         """
-        Breadth-first search collecting places reachable from transition t_start.
-        This traversal ignores the join-stopping rule; it's used to detect merges.
-        We follow transitions and places, but avoid infinite loops by visited set.
+        Algorithm 1 (continued): traceDecisionClass
+        Recursively find visible labels reachable from t,
+        but stop if a join construct is encountered.
         """
-        visited_places = set()
-        visited_transitions = set()
-        queue = []
+        decision_class = set()
 
-        # successors: place arcs from transition
-        succ_places = [arc.target for arc in self.petri.arcs if arc.source == t_start]
-        for p in succ_places:
-            queue.append(p)
-
-        while queue:
-            p = queue.pop(0)
-            if p in visited_places:
-                continue
-            visited_places.add(p)
-
-            # transitions outgoing from p
-            succ_t = [arc.target for arc in self.petri.arcs if arc.source == p]
-            for t in succ_t:
-                if t in visited_transitions:
-                    continue
-                visited_transitions.add(t)
-                # add successor places of t
-                for a in self.petri.arcs:
-                    if a.source == t:
-                        if a.target not in visited_places:
-                            queue.append(a.target)
-
-        return visited_places
-
-    def trace_decision_class(self, t, other_reachable_places, visited):
-        """
-        Recursively find visible labels reachable from t, but stop (return empty)
-        if we encounter any place that is reachable from other branches (merge).
-        visited is per-branch set of transitions/places to avoid infinite recursion.
-        """
-        decision_labels = set()
-
-        # prevent infinite recursion across transitions
-        if t in visited:
-            return set()
-        visited.add(t)
-
+        # while successor places of passed transition left
         succ_places = [arc.target for arc in self.petri.arcs if arc.source == t]
-        if not succ_places:
-            return set()
-
         for p in succ_places:
-            # If this place appears in other branches' reachable set, it's a true merge: abort.
-            if p in other_reachable_places:
-                # merging join encountered — cannot attribute downstream activities to this branch
+            # if p = join construct then return ∅
+            if self.is_join_construct(p):
                 return set()
 
-            # Otherwise, continue; but avoid looping forever: track visited places too
-            if ('place', p) in visited:
-                continue
-            visited.add(('place', p))
-
+            # while successor transitions of p left
             succ_transitions = [arc.target for arc in self.petri.arcs if arc.source == p]
             for t2 in succ_transitions:
-                # visible and unique transition => candidate label
                 if self.is_visible(t2) and not self.is_duplicate(t2):
-                    decision_labels.add(t2.label)
+                    decision_class.add(t2.label)
                 else:
-                    # recurse with a copy of visited for per-path safety
-                    result = self.trace_decision_class(t2, other_reachable_places, visited)
-                    # if result is empty due to hitting a merge deeper down, we must return empty per paper
+                    result = self.trace_decision_class(t2)
                     if not result:
+                        # join found deeper down → return ∅
                         return set()
-                    decision_labels |= result
+                    else:
+                        decision_class |= result
 
-        return decision_labels
+        return decision_class
 
-    # helpers (unchanged mostly)
+    # helper methods (same semantics)
     def is_visible(self, t):
-        # visible if label is present and non-empty (t.label could be None or "")
-        return getattr(t, "label", None)
+        # visible if transition has a non-empty label
+        label = getattr(t, "label", None)
+        return bool(label)
 
     def is_duplicate(self, t):
         label = getattr(t, "label", None)
@@ -163,5 +114,6 @@ class Petri:
         return len(same) > 1
 
     def is_join_construct(self, place):
+        # join construct if place has more than one incoming arc
         incoming = [arc.source for arc in self.petri.arcs if arc.target == place]
         return len(incoming) > 1
