@@ -16,7 +16,7 @@ class Data:
             self.kind = "BPI Challenge 2017"
         else:
             raise ValueError("Dataset Unknown")
-        self.cache_file = "data/pkl/" + self.kind + ".pkl"
+        self.cache_file = os.path.join("data/pkl/" + self.kind + ".pkl")
 
     def load_xes(self):
         # Check for cached version

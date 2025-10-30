@@ -4,6 +4,8 @@ from petri import Petri
 from decision_mining_ml import DecisionMiningML
 import json
 
+import os
+print(os.getcwd())
 
 # Load Yaml Config
 print("1. Opening config.yaml... \n")

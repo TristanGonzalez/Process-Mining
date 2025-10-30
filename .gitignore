@@ -6,3 +6,5 @@ data/xes
 data/pkl
 data/csv
 *.pyc
+models/*
+data/petri_output/*
