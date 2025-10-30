@@ -1,4 +1,8 @@
 .idea
 .DS_Store
-__pycache__/data/
-data/
+__pycache__/*
+python/__pycache__/*
+data/xes
+data/pkl
+data/csv
+*.pyc

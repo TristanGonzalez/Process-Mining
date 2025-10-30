@@ -1,5 +1,7 @@
 import pm4py
 from pm4py.objects.petri_net.obj import PetriNet, Marking
+from pm4py.visualization.petri_net import visualizer as pn_visualizer
+import datetime
 
 class Petri:
     def __init__(self, log):
@@ -19,7 +21,6 @@ class Petri:
                 loop_two_threshold=heuristic_params.get("loop_two_threshold", 0.5),
             )
         elif method == "inductive":
-            print(inductive_params.get("noise_threshold", 0.0))
             self.petri, self.im, self.fm = pm4py.discover_petri_net_inductive(
                 log=self.log,
                 noise_threshold=inductive_params.get("noise_threshold", 0.0),
@@ -30,7 +31,11 @@ class Petri:
 
 
     def view_process_model(self):
-        pm4py.view_petri_net(self.petri, self.im, self.fm, log=self.log)
+        gviz = pn_visualizer.apply(self.petri, self.im, self.fm, log=self.log)
+
+        date_time = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
+        # Save as PNG
+        pn_visualizer.save(gviz, f"data/petri_output/petri-{date_time}.png")
 
     def find_decision_points(self):
         """

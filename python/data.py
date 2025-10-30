@@ -35,65 +35,8 @@ class Data:
         df = pm4py.convert_to_dataframe(self.log)
         return df
 
+
     def dataframe_from_dp(self, dp):
-        rows = []
-
-        # Get all distinct activities
-        activities = set()
-        for trace in self.log:
-            for event in trace:
-                activities.add(event['concept:name'])
-
-        for trace in self.log:
-            case_id = trace.attributes.get('concept:name') or trace.attributes.get('case:concept:name')
-
-            # Initialize activity counts
-            activity_counts = {act: 0 for act in activities}
-
-            for idx, event in enumerate(trace):
-                activity = event['concept:name']
-                activity_counts[activity] += 1
-
-                # Determine which decision point (if any) this activity belongs to
-                dp_id = None
-                for place_name, options in dp.items():
-                    for opt in options:
-                        if activity in opt:
-                            dp_id = place_name
-                            break
-                    if dp_id:
-                        break
-
-                # Base row for every event
-                row = {
-                    "decision_point": dp_id,
-                    "activity": activity,
-                    "case_id": case_id
-                }
-
-                # Add event attributes dynamically
-                for key, value in event.items():
-                    key_clean = key.split(":")[0].lower() if ":" in key else key.lower()
-                    if key_clean != "concept":
-                        row[key_clean] = value
-
-                # Add trace attributes
-                for attr_key, attr_value in trace.attributes.items():
-                    key_clean = attr_key.split(":")[0].lower() if ":" in attr_key else attr_key.lower()
-                    if key_clean not in row and key_clean != "concept":
-                        row[key_clean] = attr_value
-
-                # Add activity counts
-                for act, count in activity_counts.items():
-                    row[f"count_{act}"] = count
-
-                rows.append(row)
-
-        df_decision_full = pd.DataFrame(rows)
-        return df_decision_full
-
-
-    def dataframe_from_dp_2(self, dp):
         rows = []
 
         # Get all distinct activities
@@ -114,49 +57,49 @@ class Data:
 
                 # Check decision points
                 for dp_id, options in dp.items():
-                    if {activity} in options:
-                        # Base row
-                        row = {
-                            "decision_point": dp_id,
-                            "activity": activity,
-                        }
+                    for option in options:
+                        if activity in option:
 
-                        # Add all event attributes dynamically
-                        for key, value in event.items():
-                            if key not in row:
-                                match = re.match(r'^.+?(?=:)', key)
-                                if match:
+                            # Base row
+                            row = {
+                                "decision_point": dp_id,
+                                "activity": activity,
+                            }
 
-                                    key = match.group(0).lower()
-                                    if key != "concept":
-                                        row[key] = value
-                                else:
-                                    key = key.lower()
-                                    row[key] = value
-
-                        for item in trace:
-                            for key, value in item.items():
-
+                            # Add all event attributes dynamically
+                            for key, value in event.items():
                                 if key not in row:
                                     match = re.match(r'^.+?(?=:)', key)
                                     if match:
+
                                         key = match.group(0).lower()
+                                        if key != "concept":
+                                            row[key] = value
                                     else:
                                         key = key.lower()
+                                        row[key] = value
+
+                            for item in trace:
+                                for key, value in item.items():
+
+                                    if key not in row:
+                                        match = re.match(r'^.+?(?=:)', key)
+                                        if match:
+                                            key = match.group(0).lower()
+                                        else:
+                                            key = key.lower()
 
 
-                                if key != "concept":
-                                    row[key] = value
+                                    if key != "concept":
+                                        row[key] = value
+
+                            # Add activity counts
+
+                            for key, value in activity_counts.items():
+                                row[key] = value
 
 
-
-                        # Add activity counts
-
-                        for key, value in activity_counts.items():
-                            row[key] = value
-
-
-                        rows.append(row)
+                            rows.append(row)
 
         df_decision_full = pd.DataFrame(rows)
         return df_decision_full

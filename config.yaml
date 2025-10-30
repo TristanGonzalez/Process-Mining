@@ -7,13 +7,13 @@ log_path: "data/xes/Road_Traffic_Fine_Management_Process.xes"
 
 # Process discovery method: "alpha", "heuristic" or "inductive"
 #process_model_type: "alpha"
-#process_model_type: "heuristic"
-process_model_type: "inductive"
+process_model_type: "heuristic"
+#process_model_type: "inductive"
 
 
 # Heuristic parameters (only used if process_model_type == "heuristic")
 heuristic:
-  dependency_threshold: 0.1
+  dependency_threshold: 0.5
   and_threshold: 0.4
   loop_two_threshold: 0.3
 
