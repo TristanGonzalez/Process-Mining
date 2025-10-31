@@ -1,0 +1,199 @@
+|--- time_weekday <= 5.50
+|   |--- Notify Result Appeal to Offender <= 0.50
+|   |   |--- amount <= 65.25
+|   |   |   |--- paymentamount <= 47.39
+|   |   |   |   |--- org <= 543.50
+|   |   |   |   |   |--- expense <= 15.58
+|   |   |   |   |   |   |--- notificationtype_P <= 0.50
+|   |   |   |   |   |   |   |--- class: Send Appeal to Prefecture
+|   |   |   |   |   |   |--- notificationtype_P >  0.50
+|   |   |   |   |   |   |   |--- org <= 539.50
+|   |   |   |   |   |   |   |   |--- lastsent_P <= 0.50
+|   |   |   |   |   |   |   |   |   |--- amount <= 38.46
+|   |   |   |   |   |   |   |   |   |   |--- class: Send Appeal to Prefecture
+|   |   |   |   |   |   |   |   |   |--- amount >  38.46
+|   |   |   |   |   |   |   |   |   |   |--- class: Send Appeal to Prefecture
+|   |   |   |   |   |   |   |   |--- lastsent_P >  0.50
+|   |   |   |   |   |   |   |   |   |--- class: Send Appeal to Prefecture
+|   |   |   |   |   |   |   |--- org >  539.50
+|   |   |   |   |   |   |   |   |--- Receive Result Appeal from Prefecture <= 0.50
+|   |   |   |   |   |   |   |   |   |--- class: Send Appeal to Prefecture
+|   |   |   |   |   |   |   |   |--- Receive Result Appeal from Prefecture >  0.50
+|   |   |   |   |   |   |   |   |   |--- class: Receive Result Appeal from Prefecture
+|   |   |   |   |   |--- expense >  15.58
+|   |   |   |   |   |   |--- Send Appeal to Prefecture <= 0.50
+|   |   |   |   |   |   |   |--- class: Receive Result Appeal from Prefecture
+|   |   |   |   |   |   |--- Send Appeal to Prefecture >  0.50
+|   |   |   |   |   |   |   |--- lastsent_N <= 0.50
+|   |   |   |   |   |   |   |   |--- Add penalty <= 0.50
+|   |   |   |   |   |   |   |   |   |--- time_weekday <= 1.50
+|   |   |   |   |   |   |   |   |   |   |--- class: Send Appeal to Prefecture
+|   |   |   |   |   |   |   |   |   |--- time_weekday >  1.50
+|   |   |   |   |   |   |   |   |   |   |--- class: Receive Result Appeal from Prefecture
+|   |   |   |   |   |   |   |   |--- Add penalty >  0.50
+|   |   |   |   |   |   |   |   |   |--- Receive Result Appeal from Prefecture <= 0.50
+|   |   |   |   |   |   |   |   |   |   |--- class: Send Appeal to Prefecture
+|   |   |   |   |   |   |   |   |   |--- Receive Result Appeal from Prefecture >  0.50
+|   |   |   |   |   |   |   |   |   |   |--- class: Receive Result Appeal from Prefecture
+|   |   |   |   |   |   |   |--- lastsent_N >  0.50
+|   |   |   |   |   |   |   |   |--- class: Receive Result Appeal from Prefecture
+|   |   |   |   |--- org >  543.50
+|   |   |   |   |   |--- Receive Result Appeal from Prefecture <= 0.50
+|   |   |   |   |   |   |--- class: Send Appeal to Prefecture
+|   |   |   |   |   |--- Receive Result Appeal from Prefecture >  0.50
+|   |   |   |   |   |   |--- dismissal_NIL <= 0.50
+|   |   |   |   |   |   |   |--- class: Receive Result Appeal from Prefecture
+|   |   |   |   |   |   |--- dismissal_NIL >  0.50
+|   |   |   |   |   |   |   |--- class: Receive Result Appeal from Prefecture
+|   |   |   |--- paymentamount >  47.39
+|   |   |   |   |--- Receive Result Appeal from Prefecture <= 0.50
+|   |   |   |   |   |--- class: Send Appeal to Prefecture
+|   |   |   |   |--- Receive Result Appeal from Prefecture >  0.50
+|   |   |   |   |   |--- class: Receive Result Appeal from Prefecture
+|   |   |--- amount >  65.25
+|   |   |   |--- Receive Result Appeal from Prefecture <= 0.50
+|   |   |   |   |--- class: Send Appeal to Prefecture
+|   |   |   |--- Receive Result Appeal from Prefecture >  0.50
+|   |   |   |   |--- Send Appeal to Prefecture <= 0.50
+|   |   |   |   |   |--- class: Receive Result Appeal from Prefecture
+|   |   |   |   |--- Send Appeal to Prefecture >  0.50
+|   |   |   |   |   |--- vehicleclass_M <= 0.50
+|   |   |   |   |   |   |--- notificationtype_P <= 0.50
+|   |   |   |   |   |   |   |--- class: Receive Result Appeal from Prefecture
+|   |   |   |   |   |   |--- notificationtype_P >  0.50
+|   |   |   |   |   |   |   |--- paymentamount <= 275.41
+|   |   |   |   |   |   |   |   |--- Add penalty <= 0.50
+|   |   |   |   |   |   |   |   |   |--- paymentamount <= 84.60
+|   |   |   |   |   |   |   |   |   |   |--- class: Receive Result Appeal from Prefecture
+|   |   |   |   |   |   |   |   |   |--- paymentamount >  84.60
+|   |   |   |   |   |   |   |   |   |   |--- class: Receive Result Appeal from Prefecture
+|   |   |   |   |   |   |   |   |--- Add penalty >  0.50
+|   |   |   |   |   |   |   |   |   |--- lastsent_N <= 0.50
+|   |   |   |   |   |   |   |   |   |   |--- class: Receive Result Appeal from Prefecture
+|   |   |   |   |   |   |   |   |   |--- lastsent_N >  0.50
+|   |   |   |   |   |   |   |   |   |   |--- class: Receive Result Appeal from Prefecture
+|   |   |   |   |   |   |   |--- paymentamount >  275.41
+|   |   |   |   |   |   |   |   |--- points <= 2.50
+|   |   |   |   |   |   |   |   |   |--- amount <= 268.75
+|   |   |   |   |   |   |   |   |   |   |--- class: Receive Result Appeal from Prefecture
+|   |   |   |   |   |   |   |   |   |--- amount >  268.75
+|   |   |   |   |   |   |   |   |   |   |--- class: Receive Result Appeal from Prefecture
+|   |   |   |   |   |   |   |   |--- points >  2.50
+|   |   |   |   |   |   |   |   |   |--- class: Receive Result Appeal from Prefecture
+|   |   |   |   |   |--- vehicleclass_M >  0.50
+|   |   |   |   |   |   |--- class: Receive Result Appeal from Prefecture
+|   |--- Notify Result Appeal to Offender >  0.50
+|   |   |--- Insert Date Appeal to Prefecture <= 0.50
+|   |   |   |--- paymentamount <= inf
+|   |   |   |   |--- class: Notify Result Appeal to Offender
+|   |   |   |--- paymentamount >  inf
+|   |   |   |   |--- amount <= 68.55
+|   |   |   |   |   |--- class: Notify Result Appeal to Offender
+|   |   |   |   |--- amount >  68.55
+|   |   |   |   |   |--- dismissal_NIL <= 0.50
+|   |   |   |   |   |   |--- class: Notify Result Appeal to Offender
+|   |   |   |   |   |--- dismissal_NIL >  0.50
+|   |   |   |   |   |   |--- time_weekday <= 1.50
+|   |   |   |   |   |   |   |--- org <= 559.50
+|   |   |   |   |   |   |   |   |--- Receive Result Appeal from Prefecture <= 0.50
+|   |   |   |   |   |   |   |   |   |--- class: Notify Result Appeal to Offender
+|   |   |   |   |   |   |   |   |--- Receive Result Appeal from Prefecture >  0.50
+|   |   |   |   |   |   |   |   |   |--- class: Receive Result Appeal from Prefecture
+|   |   |   |   |   |   |   |--- org >  559.50
+|   |   |   |   |   |   |   |   |--- class: Notify Result Appeal to Offender
+|   |   |   |   |   |   |--- time_weekday >  1.50
+|   |   |   |   |   |   |   |--- class: Notify Result Appeal to Offender
+|   |   |--- Insert Date Appeal to Prefecture >  0.50
+|   |   |   |--- lastsent_P <= 0.50
+|   |   |   |   |--- class: Notify Result Appeal to Offender
+|   |   |   |--- lastsent_P >  0.50
+|   |   |   |   |--- article <= 157.50
+|   |   |   |   |   |--- amount <= 304.50
+|   |   |   |   |   |   |--- class: Notify Result Appeal to Offender
+|   |   |   |   |   |--- amount >  304.50
+|   |   |   |   |   |   |--- points <= 4.00
+|   |   |   |   |   |   |   |--- class: Notify Result Appeal to Offender
+|   |   |   |   |   |   |--- points >  4.00
+|   |   |   |   |   |   |   |--- totalpaymentamount <= 97.25
+|   |   |   |   |   |   |   |   |--- vehicleclass_M <= 0.50
+|   |   |   |   |   |   |   |   |   |--- org <= 29.50
+|   |   |   |   |   |   |   |   |   |   |--- class: Notify Result Appeal to Offender
+|   |   |   |   |   |   |   |   |   |--- org >  29.50
+|   |   |   |   |   |   |   |   |   |   |--- class: Notify Result Appeal to Offender
+|   |   |   |   |   |   |   |   |--- vehicleclass_M >  0.50
+|   |   |   |   |   |   |   |   |   |--- class: Notify Result Appeal to Offender
+|   |   |   |   |   |   |   |--- totalpaymentamount >  97.25
+|   |   |   |   |   |   |   |   |--- class: Notify Result Appeal to Offender
+|   |   |   |   |--- article >  157.50
+|   |   |   |   |   |--- dismissal_$ <= 0.50
+|   |   |   |   |   |   |--- class: Notify Result Appeal to Offender
+|   |   |   |   |   |--- dismissal_$ >  0.50
+|   |   |   |   |   |   |--- Receive Result Appeal from Prefecture <= 0.50
+|   |   |   |   |   |   |   |--- class: Notify Result Appeal to Offender
+|   |   |   |   |   |   |--- Receive Result Appeal from Prefecture >  0.50
+|   |   |   |   |   |   |   |--- class: Receive Result Appeal from Prefecture
+|--- time_weekday >  5.50
+|   |--- expense <= 20.93
+|   |   |--- Insert Fine Notification <= 0.50
+|   |   |   |--- class: Send Appeal to Prefecture
+|   |   |--- Insert Fine Notification >  0.50
+|   |   |   |--- vehicleclass_M <= 0.50
+|   |   |   |   |--- expense <= 13.22
+|   |   |   |   |   |--- class: Send Appeal to Prefecture
+|   |   |   |   |--- expense >  13.22
+|   |   |   |   |   |--- lastsent_P <= 0.50
+|   |   |   |   |   |   |--- Receive Result Appeal from Prefecture <= 0.50
+|   |   |   |   |   |   |   |--- class: Send Appeal to Prefecture
+|   |   |   |   |   |   |--- Receive Result Appeal from Prefecture >  0.50
+|   |   |   |   |   |   |   |--- class: Receive Result Appeal from Prefecture
+|   |   |   |   |   |--- lastsent_P >  0.50
+|   |   |   |   |   |   |--- class: Send Appeal to Prefecture
+|   |   |   |--- vehicleclass_M >  0.50
+|   |   |   |   |--- class: Send Appeal to Prefecture
+|   |--- expense >  20.93
+|   |   |--- Send for Credit Collection <= 0.50
+|   |   |   |--- dismissal_NIL <= 0.50
+|   |   |   |   |--- Receive Result Appeal from Prefecture <= 0.50
+|   |   |   |   |   |--- class: Send Appeal to Prefecture
+|   |   |   |   |--- Receive Result Appeal from Prefecture >  0.50
+|   |   |   |   |   |--- class: Receive Result Appeal from Prefecture
+|   |   |   |--- dismissal_NIL >  0.50
+|   |   |   |   |--- amount <= 110.25
+|   |   |   |   |   |--- Appeal to Judge <= 0.50
+|   |   |   |   |   |   |--- Notify Result Appeal to Offender <= 0.50
+|   |   |   |   |   |   |   |--- org <= 539.50
+|   |   |   |   |   |   |   |   |--- class: Receive Result Appeal from Prefecture
+|   |   |   |   |   |   |   |--- org >  539.50
+|   |   |   |   |   |   |   |   |--- amount <= 70.13
+|   |   |   |   |   |   |   |   |   |--- class: Send Appeal to Prefecture
+|   |   |   |   |   |   |   |   |--- amount >  70.13
+|   |   |   |   |   |   |   |   |   |--- class: Receive Result Appeal from Prefecture
+|   |   |   |   |   |   |--- Notify Result Appeal to Offender >  0.50
+|   |   |   |   |   |   |   |--- amount <= 57.75
+|   |   |   |   |   |   |   |   |--- class: Notify Result Appeal to Offender
+|   |   |   |   |   |   |   |--- amount >  57.75
+|   |   |   |   |   |   |   |   |--- class: Notify Result Appeal to Offender
+|   |   |   |   |   |--- Appeal to Judge >  0.50
+|   |   |   |   |   |   |--- class: Send Appeal to Prefecture
+|   |   |   |   |--- amount >  110.25
+|   |   |   |   |   |--- Send Appeal to Prefecture <= 0.50
+|   |   |   |   |   |   |--- org <= 5.50
+|   |   |   |   |   |   |   |--- class: Receive Result Appeal from Prefecture
+|   |   |   |   |   |   |--- org >  5.50
+|   |   |   |   |   |   |   |--- Notify Result Appeal to Offender <= 0.50
+|   |   |   |   |   |   |   |   |--- class: Receive Result Appeal from Prefecture
+|   |   |   |   |   |   |   |--- Notify Result Appeal to Offender >  0.50
+|   |   |   |   |   |   |   |   |--- class: Notify Result Appeal to Offender
+|   |   |   |   |   |--- Send Appeal to Prefecture >  0.50
+|   |   |   |   |   |   |--- points <= 6.00
+|   |   |   |   |   |   |   |--- class: Send Appeal to Prefecture
+|   |   |   |   |   |   |--- points >  6.00
+|   |   |   |   |   |   |   |--- Notify Result Appeal to Offender <= 0.50
+|   |   |   |   |   |   |   |   |--- Receive Result Appeal from Prefecture <= 0.50
+|   |   |   |   |   |   |   |   |   |--- class: Send Appeal to Prefecture
+|   |   |   |   |   |   |   |   |--- Receive Result Appeal from Prefecture >  0.50
+|   |   |   |   |   |   |   |   |   |--- class: Receive Result Appeal from Prefecture
+|   |   |   |   |   |   |   |--- Notify Result Appeal to Offender >  0.50
+|   |   |   |   |   |   |   |   |--- class: Notify Result Appeal to Offender
+|   |   |--- Send for Credit Collection >  0.50
+|   |   |   |--- class: Send Appeal to Prefecture

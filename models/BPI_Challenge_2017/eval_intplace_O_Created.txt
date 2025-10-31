@@ -1,0 +1,16 @@
+Decision point: intplace_O_Created
+Samples: 41733
+
+=== Default tree ===
+accuracy: 0.969888178913738
+precision_macro: 0.8147577473473654
+recall_macro: 0.9334500150224453
+f1_macro: 0.8631600806780453
+n_classes: 2
+
+=== Pruned tree ===
+accuracy: 0.8522364217252396
+precision_macro: 0.5820475951814575
+recall_macro: 0.7366134548089498
+f1_macro: 0.6016544702513522
+n_classes: 2

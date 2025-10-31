@@ -1,0 +1,16 @@
+Decision point: intplace_W_Call incomplete files
+Samples: 44036
+
+=== Default tree ===
+accuracy: 0.3964120808417228
+precision_macro: 0.548195901769309
+recall_macro: 0.35118975414843995
+f1_macro: 0.22406837806267907
+n_classes: 3
+
+=== Pruned tree ===
+accuracy: 0.39308152297327986
+precision_macro: 0.4180395767826904
+recall_macro: 0.33453809454966027
+f1_macro: 0.1901560474431929
+n_classes: 3

@@ -1,0 +1,16 @@
+Decision point: intplace_Add penalty
+Samples: 6036
+
+=== Default tree ===
+accuracy: 0.7548315847598012
+precision_macro: 0.6485559099626546
+recall_macro: 0.7216245532747876
+f1_macro: 0.6595209462217808
+n_classes: 3
+
+=== Pruned tree ===
+accuracy: 0.2766427388183324
+precision_macro: 0.5177845501419339
+recall_macro: 0.379801235964697
+f1_macro: 0.22619108605919494
+n_classes: 3

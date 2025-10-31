@@ -1,0 +1,19 @@
+|--- time_weekday <= 5.50
+|   |--- Notify Result Appeal to Offender <= 0.50
+|   |   |--- amount <= 65.25
+|   |   |   |--- class: Send Appeal to Prefecture
+|   |   |--- amount >  65.25
+|   |   |   |--- class: Receive Result Appeal from Prefecture
+|   |--- Notify Result Appeal to Offender >  0.50
+|   |   |--- org <= 848.50
+|   |   |   |--- class: Notify Result Appeal to Offender
+|   |   |--- org >  848.50
+|   |   |   |--- class: Notify Result Appeal to Offender
+|--- time_weekday >  5.50
+|   |--- Add penalty <= 0.50
+|   |   |--- class: Send Appeal to Prefecture
+|   |--- Add penalty >  0.50
+|   |   |--- lastsent_N <= 0.50
+|   |   |   |--- class: Send Appeal to Prefecture
+|   |   |--- lastsent_N >  0.50
+|   |   |   |--- class: Send Appeal to Prefecture
