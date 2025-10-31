@@ -1,0 +1,16 @@
+Decision point: intplace_W_Validate application
+Samples: 59797
+
+=== Default tree ===
+accuracy: 0.28127090301003344
+precision_macro: 0.4383437955270684
+recall_macro: 0.3490230340382257
+f1_macro: 0.18500143462152155
+n_classes: 3
+
+=== Pruned tree ===
+accuracy: 0.2882385730211817
+precision_macro: 0.11177699436872406
+recall_macro: 0.3339253996447602
+f1_macro: 0.15053795741808426
+n_classes: 3

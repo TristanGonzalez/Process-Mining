@@ -1,0 +1,568 @@
+|--- O_Returned <= 0.50
+|   |--- W_Handle leads <= 1.00
+|   |   |--- W_Complete application <= 3.50
+|   |   |   |--- W_Call after offers <= 2.50
+|   |   |   |   |--- numberofterms <= 113.50
+|   |   |   |   |   |--- O_Sent (mail and online) <= 0.50
+|   |   |   |   |   |   |--- class: O_Sent (online only)
+|   |   |   |   |   |--- O_Sent (mail and online) >  0.50
+|   |   |   |   |   |   |--- time_hour <= 12.50
+|   |   |   |   |   |   |   |--- O_Cancelled <= 1.50
+|   |   |   |   |   |   |   |   |--- org_User_99 <= 0.50
+|   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |   |   |--- org_User_99 >  0.50
+|   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |   |--- O_Cancelled >  1.50
+|   |   |   |   |   |   |   |   |--- O_Sent (mail and online) <= 2.50
+|   |   |   |   |   |   |   |   |   |--- O_Create Offer <= 4.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |   |   |   |--- O_Create Offer >  4.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (online only)
+|   |   |   |   |   |   |   |   |--- O_Sent (mail and online) >  2.50
+|   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |--- time_hour >  12.50
+|   |   |   |   |   |   |   |--- firstwithdrawalamount <= 4999.50
+|   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |   |--- firstwithdrawalamount >  4999.50
+|   |   |   |   |   |   |   |   |--- org_User_68 <= 0.50
+|   |   |   |   |   |   |   |   |   |--- time_hour <= 14.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |   |   |   |--- time_hour >  14.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |   |   |--- org_User_68 >  0.50
+|   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |--- numberofterms >  113.50
+|   |   |   |   |   |--- O_Created <= 3.50
+|   |   |   |   |   |   |--- org_User_29 <= 0.50
+|   |   |   |   |   |   |   |--- time_hour <= 8.50
+|   |   |   |   |   |   |   |   |--- time_weekday <= -0.50
+|   |   |   |   |   |   |   |   |   |--- O_Create Offer <= 1.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (online only)
+|   |   |   |   |   |   |   |   |   |--- O_Create Offer >  1.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |   |   |--- time_weekday >  -0.50
+|   |   |   |   |   |   |   |   |   |--- O_Sent (mail and online) <= 0.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (online only)
+|   |   |   |   |   |   |   |   |   |--- O_Sent (mail and online) >  0.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |   |--- time_hour >  8.50
+|   |   |   |   |   |   |   |   |--- lifecycle_complete <= 0.50
+|   |   |   |   |   |   |   |   |   |--- O_Sent (online only) <= 0.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |   |   |   |--- O_Sent (online only) >  0.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (online only)
+|   |   |   |   |   |   |   |   |--- lifecycle_complete >  0.50
+|   |   |   |   |   |   |   |   |   |--- O_Created <= 1.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (online only)
+|   |   |   |   |   |   |   |   |   |--- O_Created >  1.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |--- org_User_29 >  0.50
+|   |   |   |   |   |   |   |--- O_Created <= 2.50
+|   |   |   |   |   |   |   |   |--- time_weekday <= 0.50
+|   |   |   |   |   |   |   |   |   |--- eventorigin_Offer <= 0.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |   |   |   |--- eventorigin_Offer >  0.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |   |   |--- time_weekday >  0.50
+|   |   |   |   |   |   |   |   |   |--- monthlycost <= 509.62
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (online only)
+|   |   |   |   |   |   |   |   |   |--- monthlycost >  509.62
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |   |--- O_Created >  2.50
+|   |   |   |   |   |   |   |   |--- class: O_Sent (online only)
+|   |   |   |   |   |--- O_Created >  3.50
+|   |   |   |   |   |   |--- org_User_119 <= 0.50
+|   |   |   |   |   |   |   |--- org_User_128 <= 0.50
+|   |   |   |   |   |   |   |   |--- org_User_31 <= 0.50
+|   |   |   |   |   |   |   |   |   |--- org_User_68 <= 0.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (online only)
+|   |   |   |   |   |   |   |   |   |--- org_User_68 >  0.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |   |   |--- org_User_31 >  0.50
+|   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |   |--- org_User_128 >  0.50
+|   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |--- org_User_119 >  0.50
+|   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |--- W_Call after offers >  2.50
+|   |   |   |   |--- W_Validate application <= 1.50
+|   |   |   |   |   |--- selected <= 0.50
+|   |   |   |   |   |   |--- time_weekday <= 0.50
+|   |   |   |   |   |   |   |--- action_statechange <= 0.50
+|   |   |   |   |   |   |   |   |--- time_hour <= 12.50
+|   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |   |   |--- time_hour >  12.50
+|   |   |   |   |   |   |   |   |   |--- O_Sent (mail and online) <= 1.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (online only)
+|   |   |   |   |   |   |   |   |   |--- O_Sent (mail and online) >  1.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |   |--- action_statechange >  0.50
+|   |   |   |   |   |   |   |   |--- O_Create Offer <= 3.50
+|   |   |   |   |   |   |   |   |   |--- O_Sent (online only) <= 0.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |   |   |   |--- O_Sent (online only) >  0.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (online only)
+|   |   |   |   |   |   |   |   |--- O_Create Offer >  3.50
+|   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |--- time_weekday >  0.50
+|   |   |   |   |   |   |   |--- offeredamount <= 14500.00
+|   |   |   |   |   |   |   |   |--- O_Cancelled <= 0.50
+|   |   |   |   |   |   |   |   |   |--- numberofterms <= 84.00
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (online only)
+|   |   |   |   |   |   |   |   |   |--- numberofterms >  84.00
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |   |   |--- O_Cancelled >  0.50
+|   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |   |--- offeredamount >  14500.00
+|   |   |   |   |   |   |   |   |--- action_statechange <= 0.50
+|   |   |   |   |   |   |   |   |   |--- firstwithdrawalamount <= 25750.00
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (online only)
+|   |   |   |   |   |   |   |   |   |--- firstwithdrawalamount >  25750.00
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |   |   |--- action_statechange >  0.50
+|   |   |   |   |   |   |   |   |   |--- time_hour <= 15.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (online only)
+|   |   |   |   |   |   |   |   |   |--- time_hour >  15.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |--- selected >  0.50
+|   |   |   |   |   |   |--- eventorigin_Workflow <= 0.50
+|   |   |   |   |   |   |   |--- org_User_133 <= 0.50
+|   |   |   |   |   |   |   |   |--- org_User_102 <= 0.50
+|   |   |   |   |   |   |   |   |   |--- org_User_125 <= 0.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (online only)
+|   |   |   |   |   |   |   |   |   |--- org_User_125 >  0.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |   |   |--- org_User_102 >  0.50
+|   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |   |--- org_User_133 >  0.50
+|   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |--- eventorigin_Workflow >  0.50
+|   |   |   |   |   |   |   |--- org_User_99 <= 0.50
+|   |   |   |   |   |   |   |   |--- O_Cancelled <= 1.50
+|   |   |   |   |   |   |   |   |   |--- W_Call after offers <= 4.00
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |   |   |   |--- W_Call after offers >  4.00
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |   |   |--- O_Cancelled >  1.50
+|   |   |   |   |   |   |   |   |   |--- firstwithdrawalamount <= 13673.62
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |   |   |   |--- firstwithdrawalamount >  13673.62
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (online only)
+|   |   |   |   |   |   |   |--- org_User_99 >  0.50
+|   |   |   |   |   |   |   |   |--- O_Sent (online only) <= 0.50
+|   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |   |   |--- O_Sent (online only) >  0.50
+|   |   |   |   |   |   |   |   |   |--- offeredamount <= 11500.00
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (online only)
+|   |   |   |   |   |   |   |   |   |--- offeredamount >  11500.00
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |--- W_Validate application >  1.50
+|   |   |   |   |   |--- offeredamount <= 62500.00
+|   |   |   |   |   |   |--- monthlycost <= 600.95
+|   |   |   |   |   |   |   |--- org_User_53 <= 0.50
+|   |   |   |   |   |   |   |   |--- A_Validating <= 3.50
+|   |   |   |   |   |   |   |   |   |--- O_Sent (mail and online) <= 1.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (online only)
+|   |   |   |   |   |   |   |   |   |--- O_Sent (mail and online) >  1.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (online only)
+|   |   |   |   |   |   |   |   |--- A_Validating >  3.50
+|   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |   |--- org_User_53 >  0.50
+|   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |--- monthlycost >  600.95
+|   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |--- offeredamount >  62500.00
+|   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |--- W_Complete application >  3.50
+|   |   |   |--- O_Sent (mail and online) <= 0.50
+|   |   |   |   |--- class: O_Sent (online only)
+|   |   |   |--- O_Sent (mail and online) >  0.50
+|   |   |   |   |--- action_Deleted <= 0.50
+|   |   |   |   |   |--- org_User_99 <= 0.50
+|   |   |   |   |   |   |--- selected <= 0.50
+|   |   |   |   |   |   |   |--- org_User_31 <= 0.50
+|   |   |   |   |   |   |   |   |--- A_Complete <= 0.50
+|   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |   |   |--- A_Complete >  0.50
+|   |   |   |   |   |   |   |   |   |--- accepted <= 0.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (online only)
+|   |   |   |   |   |   |   |   |   |--- accepted >  0.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (online only)
+|   |   |   |   |   |   |   |--- org_User_31 >  0.50
+|   |   |   |   |   |   |   |   |--- class: O_Sent (online only)
+|   |   |   |   |   |   |--- selected >  0.50
+|   |   |   |   |   |   |   |--- accepted <= 0.50
+|   |   |   |   |   |   |   |   |--- O_Sent (online only) <= 0.50
+|   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |   |   |--- O_Sent (online only) >  0.50
+|   |   |   |   |   |   |   |   |   |--- monthlycost <= 235.00
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (online only)
+|   |   |   |   |   |   |   |   |   |--- monthlycost >  235.00
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (online only)
+|   |   |   |   |   |   |   |--- accepted >  0.50
+|   |   |   |   |   |   |   |   |--- time_weekday <= 0.50
+|   |   |   |   |   |   |   |   |   |--- firstwithdrawalamount <= 9161.00
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |   |   |   |--- firstwithdrawalamount >  9161.00
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (online only)
+|   |   |   |   |   |   |   |   |--- time_weekday >  0.50
+|   |   |   |   |   |   |   |   |   |--- W_Complete application <= 5.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |   |   |   |--- W_Complete application >  5.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |--- org_User_99 >  0.50
+|   |   |   |   |   |   |--- W_Call incomplete files <= 1.50
+|   |   |   |   |   |   |   |--- accepted <= 0.50
+|   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |   |--- accepted >  0.50
+|   |   |   |   |   |   |   |   |--- O_Create Offer <= 1.50
+|   |   |   |   |   |   |   |   |   |--- firstwithdrawalamount <= 2500.00
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |   |   |   |--- firstwithdrawalamount >  2500.00
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |   |   |--- O_Create Offer >  1.50
+|   |   |   |   |   |   |   |   |   |--- numberofterms <= 108.00
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (online only)
+|   |   |   |   |   |   |   |   |   |--- numberofterms >  108.00
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (online only)
+|   |   |   |   |   |   |--- W_Call incomplete files >  1.50
+|   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |--- action_Deleted >  0.50
+|   |   |   |   |   |--- W_Call after offers <= 2.50
+|   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |--- W_Call after offers >  2.50
+|   |   |   |   |   |   |--- org_User_42 <= 0.50
+|   |   |   |   |   |   |   |--- time_hour <= 7.50
+|   |   |   |   |   |   |   |   |--- offeredamount <= 46500.00
+|   |   |   |   |   |   |   |   |   |--- org_User_68 <= 0.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (online only)
+|   |   |   |   |   |   |   |   |   |--- org_User_68 >  0.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |   |   |--- offeredamount >  46500.00
+|   |   |   |   |   |   |   |   |   |--- class: O_Sent (online only)
+|   |   |   |   |   |   |   |--- time_hour >  7.50
+|   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |--- org_User_42 >  0.50
+|   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |--- W_Handle leads >  1.00
+|   |   |--- A_Complete <= 0.50
+|   |   |   |--- org_User_34 <= 0.50
+|   |   |   |   |--- O_Create Offer <= 3.50
+|   |   |   |   |   |--- org_User_39 <= 0.50
+|   |   |   |   |   |   |--- org_User_62 <= 0.50
+|   |   |   |   |   |   |   |--- numberofterms <= 132.50
+|   |   |   |   |   |   |   |   |--- numberofterms <= 14.50
+|   |   |   |   |   |   |   |   |   |--- O_Sent (online only) <= 0.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |   |   |   |--- O_Sent (online only) >  0.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (online only)
+|   |   |   |   |   |   |   |   |--- numberofterms >  14.50
+|   |   |   |   |   |   |   |   |   |--- O_Created <= 2.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |   |   |   |--- O_Created >  2.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |   |--- numberofterms >  132.50
+|   |   |   |   |   |   |   |   |--- org_User_95 <= 0.50
+|   |   |   |   |   |   |   |   |   |--- org_User_87 <= 0.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |   |   |   |--- org_User_87 >  0.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |   |   |--- org_User_95 >  0.50
+|   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |--- org_User_62 >  0.50
+|   |   |   |   |   |   |   |--- time_weekday <= 2.50
+|   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |   |--- time_weekday >  2.50
+|   |   |   |   |   |   |   |   |--- O_Sent (online only) <= 0.50
+|   |   |   |   |   |   |   |   |   |--- lifecycle_complete <= 0.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |   |   |   |--- lifecycle_complete >  0.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |   |   |--- O_Sent (online only) >  0.50
+|   |   |   |   |   |   |   |   |   |--- class: O_Sent (online only)
+|   |   |   |   |   |--- org_User_39 >  0.50
+|   |   |   |   |   |   |--- accepted <= 0.50
+|   |   |   |   |   |   |   |--- selected <= 0.50
+|   |   |   |   |   |   |   |   |--- O_Sent (online only) <= 0.50
+|   |   |   |   |   |   |   |   |   |--- firstwithdrawalamount <= 7100.00
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |   |   |   |--- firstwithdrawalamount >  7100.00
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |   |   |--- O_Sent (online only) >  0.50
+|   |   |   |   |   |   |   |   |   |--- class: O_Sent (online only)
+|   |   |   |   |   |   |   |--- selected >  0.50
+|   |   |   |   |   |   |   |   |--- W_Complete application <= 5.00
+|   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |   |   |--- W_Complete application >  5.00
+|   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |--- accepted >  0.50
+|   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |--- O_Create Offer >  3.50
+|   |   |   |   |   |--- O_Sent (online only) <= 0.50
+|   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |--- O_Sent (online only) >  0.50
+|   |   |   |   |   |   |--- class: O_Sent (online only)
+|   |   |   |--- org_User_34 >  0.50
+|   |   |   |   |--- firstwithdrawalamount <= 1729.50
+|   |   |   |   |   |--- W_Complete application <= 11.50
+|   |   |   |   |   |   |--- numberofterms <= 73.50
+|   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |--- numberofterms >  73.50
+|   |   |   |   |   |   |   |--- class: O_Sent (online only)
+|   |   |   |   |   |--- W_Complete application >  11.50
+|   |   |   |   |   |   |--- monthlycost <= 425.00
+|   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |--- monthlycost >  425.00
+|   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |--- firstwithdrawalamount >  1729.50
+|   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |--- A_Complete >  0.50
+|   |   |   |--- W_Call after offers <= 3.50
+|   |   |   |   |--- org_User_115 <= 0.50
+|   |   |   |   |   |--- W_Call after offers <= 2.50
+|   |   |   |   |   |   |--- org_User_68 <= 0.50
+|   |   |   |   |   |   |   |--- time_weekday <= 5.50
+|   |   |   |   |   |   |   |   |--- org_User_119 <= 0.50
+|   |   |   |   |   |   |   |   |   |--- time_hour <= 7.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |   |   |   |--- time_hour >  7.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |   |   |--- org_User_119 >  0.50
+|   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |   |--- time_weekday >  5.50
+|   |   |   |   |   |   |   |   |--- offeredamount <= 41600.00
+|   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |   |   |--- offeredamount >  41600.00
+|   |   |   |   |   |   |   |   |   |--- lifecycle_withdraw <= 0.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (online only)
+|   |   |   |   |   |   |   |   |   |--- lifecycle_withdraw >  0.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |--- org_User_68 >  0.50
+|   |   |   |   |   |   |   |--- time_hour <= 9.50
+|   |   |   |   |   |   |   |   |--- lifecycle_complete <= 0.50
+|   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |   |   |--- lifecycle_complete >  0.50
+|   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |   |--- time_hour >  9.50
+|   |   |   |   |   |   |   |   |--- creditscore <= 517.00
+|   |   |   |   |   |   |   |   |   |--- monthlycost <= 208.85
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (online only)
+|   |   |   |   |   |   |   |   |   |--- monthlycost >  208.85
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |   |   |--- creditscore >  517.00
+|   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |--- W_Call after offers >  2.50
+|   |   |   |   |   |   |--- offeredamount <= 10050.00
+|   |   |   |   |   |   |   |--- creditscore <= 322.50
+|   |   |   |   |   |   |   |   |--- org_User_99 <= 0.50
+|   |   |   |   |   |   |   |   |   |--- O_Created <= 2.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (online only)
+|   |   |   |   |   |   |   |   |   |--- O_Created >  2.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (online only)
+|   |   |   |   |   |   |   |   |--- org_User_99 >  0.50
+|   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |   |--- creditscore >  322.50
+|   |   |   |   |   |   |   |   |--- org_User_121 <= 0.50
+|   |   |   |   |   |   |   |   |   |--- org_User_100 <= 0.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |   |   |   |--- org_User_100 >  0.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (online only)
+|   |   |   |   |   |   |   |   |--- org_User_121 >  0.50
+|   |   |   |   |   |   |   |   |   |--- O_Sent (mail and online) <= 1.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (online only)
+|   |   |   |   |   |   |   |   |   |--- O_Sent (mail and online) >  1.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |--- offeredamount >  10050.00
+|   |   |   |   |   |   |   |--- O_Sent (mail and online) <= 1.50
+|   |   |   |   |   |   |   |   |--- time_weekday <= 4.50
+|   |   |   |   |   |   |   |   |   |--- offeredamount <= 13250.00
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |   |   |   |--- offeredamount >  13250.00
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (online only)
+|   |   |   |   |   |   |   |   |--- time_weekday >  4.50
+|   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |   |--- O_Sent (mail and online) >  1.50
+|   |   |   |   |   |   |   |   |--- action_statechange <= 0.50
+|   |   |   |   |   |   |   |   |   |--- org_User_45 <= 0.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |   |   |   |--- org_User_45 >  0.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |   |   |--- action_statechange >  0.50
+|   |   |   |   |   |   |   |   |   |--- O_Create Offer <= 3.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |   |   |   |--- O_Create Offer >  3.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |--- org_User_115 >  0.50
+|   |   |   |   |   |--- offeredamount <= 6400.00
+|   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |--- offeredamount >  6400.00
+|   |   |   |   |   |   |--- W_Call after offers <= 2.50
+|   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |--- W_Call after offers >  2.50
+|   |   |   |   |   |   |   |--- W_Complete application <= 7.00
+|   |   |   |   |   |   |   |   |--- firstwithdrawalamount <= 14750.00
+|   |   |   |   |   |   |   |   |   |--- monthlycost <= 140.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (online only)
+|   |   |   |   |   |   |   |   |   |--- monthlycost >  140.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (online only)
+|   |   |   |   |   |   |   |   |--- firstwithdrawalamount >  14750.00
+|   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |   |--- W_Complete application >  7.00
+|   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |--- W_Call after offers >  3.50
+|   |   |   |   |--- O_Sent (mail and online) <= 1.50
+|   |   |   |   |   |--- selected <= 0.50
+|   |   |   |   |   |   |--- org_User_87 <= 0.50
+|   |   |   |   |   |   |   |--- org_User_24 <= 0.50
+|   |   |   |   |   |   |   |   |--- W_Call after offers <= 5.50
+|   |   |   |   |   |   |   |   |   |--- lifecycle_complete <= 0.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (online only)
+|   |   |   |   |   |   |   |   |   |--- lifecycle_complete >  0.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (online only)
+|   |   |   |   |   |   |   |   |--- W_Call after offers >  5.50
+|   |   |   |   |   |   |   |   |   |--- class: O_Sent (online only)
+|   |   |   |   |   |   |   |--- org_User_24 >  0.50
+|   |   |   |   |   |   |   |   |--- class: O_Sent (online only)
+|   |   |   |   |   |   |--- org_User_87 >  0.50
+|   |   |   |   |   |   |   |--- time_weekday <= 2.00
+|   |   |   |   |   |   |   |   |--- monthlycost <= 340.82
+|   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |   |   |--- monthlycost >  340.82
+|   |   |   |   |   |   |   |   |   |--- class: O_Sent (online only)
+|   |   |   |   |   |   |   |--- time_weekday >  2.00
+|   |   |   |   |   |   |   |   |--- eventorigin_Offer <= 0.50
+|   |   |   |   |   |   |   |   |   |--- class: O_Sent (online only)
+|   |   |   |   |   |   |   |   |--- eventorigin_Offer >  0.50
+|   |   |   |   |   |   |   |   |   |--- class: O_Sent (online only)
+|   |   |   |   |   |--- selected >  0.50
+|   |   |   |   |   |   |--- org_User_102 <= 0.50
+|   |   |   |   |   |   |   |--- org_User_31 <= 0.50
+|   |   |   |   |   |   |   |   |--- offeredamount <= 45000.00
+|   |   |   |   |   |   |   |   |   |--- firstwithdrawalamount <= 817.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (online only)
+|   |   |   |   |   |   |   |   |   |--- firstwithdrawalamount >  817.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (online only)
+|   |   |   |   |   |   |   |   |--- offeredamount >  45000.00
+|   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |   |--- org_User_31 >  0.50
+|   |   |   |   |   |   |   |   |--- class: O_Sent (online only)
+|   |   |   |   |   |   |--- org_User_102 >  0.50
+|   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |--- O_Sent (mail and online) >  1.50
+|   |   |   |   |   |--- accepted <= 0.50
+|   |   |   |   |   |   |--- O_Create Offer <= 2.50
+|   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |--- O_Create Offer >  2.50
+|   |   |   |   |   |   |   |--- org_User_83 <= 0.50
+|   |   |   |   |   |   |   |   |--- creditscore <= 827.50
+|   |   |   |   |   |   |   |   |   |--- org_User_95 <= 0.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (online only)
+|   |   |   |   |   |   |   |   |   |--- org_User_95 >  0.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |   |   |--- creditscore >  827.50
+|   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |   |--- org_User_83 >  0.50
+|   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |--- accepted >  0.50
+|   |   |   |   |   |   |--- org_User_30 <= 0.50
+|   |   |   |   |   |   |   |--- firstwithdrawalamount <= 11215.00
+|   |   |   |   |   |   |   |   |--- numberofterms <= 36.50
+|   |   |   |   |   |   |   |   |   |--- org_User_126 <= 0.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |   |   |   |--- org_User_126 >  0.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |   |   |--- numberofterms >  36.50
+|   |   |   |   |   |   |   |   |   |--- O_Create Offer <= 2.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |   |   |   |--- O_Create Offer >  2.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |   |--- firstwithdrawalamount >  11215.00
+|   |   |   |   |   |   |   |   |--- firstwithdrawalamount <= 11465.00
+|   |   |   |   |   |   |   |   |   |--- class: O_Sent (online only)
+|   |   |   |   |   |   |   |   |--- firstwithdrawalamount >  11465.00
+|   |   |   |   |   |   |   |   |   |--- org_User_123 <= 0.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |   |   |   |--- org_User_123 >  0.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |--- org_User_30 >  0.50
+|   |   |   |   |   |   |   |--- eventorigin_Offer <= 0.50
+|   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |   |--- eventorigin_Offer >  0.50
+|   |   |   |   |   |   |   |   |--- time_hour <= 12.50
+|   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |   |   |--- time_hour >  12.50
+|   |   |   |   |   |   |   |   |   |--- offeredamount <= 33250.00
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |   |   |   |--- offeredamount >  33250.00
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (online only)
+|--- O_Returned >  0.50
+|   |--- org_User_15 <= 0.50
+|   |   |--- O_Sent (online only) <= 0.50
+|   |   |   |--- class: O_Sent (mail and online)
+|   |   |--- O_Sent (online only) >  0.50
+|   |   |   |--- monthlycost <= 1446.61
+|   |   |   |   |--- W_Validate application <= 37.50
+|   |   |   |   |   |--- org_User_118 <= 0.50
+|   |   |   |   |   |   |--- monthlycost <= 128.96
+|   |   |   |   |   |   |   |--- org_User_93 <= 0.50
+|   |   |   |   |   |   |   |   |--- org_User_71 <= 0.50
+|   |   |   |   |   |   |   |   |   |--- O_Sent (mail and online) <= 4.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (online only)
+|   |   |   |   |   |   |   |   |   |--- O_Sent (mail and online) >  4.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |   |   |--- org_User_71 >  0.50
+|   |   |   |   |   |   |   |   |   |--- O_Sent (mail and online) <= 2.00
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (online only)
+|   |   |   |   |   |   |   |   |   |--- O_Sent (mail and online) >  2.00
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |   |--- org_User_93 >  0.50
+|   |   |   |   |   |   |   |   |--- W_Handle leads <= 4.50
+|   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |   |   |--- W_Handle leads >  4.50
+|   |   |   |   |   |   |   |   |   |--- class: O_Sent (online only)
+|   |   |   |   |   |   |--- monthlycost >  128.96
+|   |   |   |   |   |   |   |--- A_Incomplete <= 4.50
+|   |   |   |   |   |   |   |   |--- W_Call incomplete files <= 25.50
+|   |   |   |   |   |   |   |   |   |--- O_Sent (online only) <= 2.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (online only)
+|   |   |   |   |   |   |   |   |   |--- O_Sent (online only) >  2.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (online only)
+|   |   |   |   |   |   |   |   |--- W_Call incomplete files >  25.50
+|   |   |   |   |   |   |   |   |   |--- org_User_125 <= 0.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (online only)
+|   |   |   |   |   |   |   |   |   |--- org_User_125 >  0.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (online only)
+|   |   |   |   |   |   |   |--- A_Incomplete >  4.50
+|   |   |   |   |   |   |   |   |--- W_Handle leads <= 1.00
+|   |   |   |   |   |   |   |   |   |--- class: O_Sent (online only)
+|   |   |   |   |   |   |   |   |--- W_Handle leads >  1.00
+|   |   |   |   |   |   |   |   |   |--- O_Created <= 2.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (online only)
+|   |   |   |   |   |   |   |   |   |--- O_Created >  2.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (online only)
+|   |   |   |   |   |--- org_User_118 >  0.50
+|   |   |   |   |   |   |--- O_Created <= 5.00
+|   |   |   |   |   |   |   |--- A_Incomplete <= 3.50
+|   |   |   |   |   |   |   |   |--- time_weekday <= 1.50
+|   |   |   |   |   |   |   |   |   |--- W_Call incomplete files <= 11.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (online only)
+|   |   |   |   |   |   |   |   |   |--- W_Call incomplete files >  11.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (online only)
+|   |   |   |   |   |   |   |   |--- time_weekday >  1.50
+|   |   |   |   |   |   |   |   |   |--- A_Submitted <= 0.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (online only)
+|   |   |   |   |   |   |   |   |   |--- A_Submitted >  0.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Sent (online only)
+|   |   |   |   |   |   |   |--- A_Incomplete >  3.50
+|   |   |   |   |   |   |   |   |--- O_Created <= 3.50
+|   |   |   |   |   |   |   |   |   |--- class: O_Sent (online only)
+|   |   |   |   |   |   |   |   |--- O_Created >  3.50
+|   |   |   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |   |   |--- O_Created >  5.00
+|   |   |   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |   |--- W_Validate application >  37.50
+|   |   |   |   |   |--- class: O_Sent (mail and online)
+|   |   |   |--- monthlycost >  1446.61
+|   |   |   |   |--- class: O_Sent (mail and online)
+|   |--- org_User_15 >  0.50
+|   |   |--- class: O_Sent (mail and online)

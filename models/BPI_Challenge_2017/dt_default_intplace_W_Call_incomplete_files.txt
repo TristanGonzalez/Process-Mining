@@ -1,0 +1,139 @@
+|--- org_User_41 <= 0.50
+|   |--- offerid_Offer_1579273034 <= 0.50
+|   |   |--- lifecycle_suspend <= 0.50
+|   |   |   |--- offerid_Offer_1124623742 <= 0.50
+|   |   |   |   |--- org_User_45 <= 0.50
+|   |   |   |   |   |--- O_Create Offer <= 1.50
+|   |   |   |   |   |   |--- W_Call after offers <= 2.50
+|   |   |   |   |   |   |   |--- class: A_Denied
+|   |   |   |   |   |   |--- W_Call after offers >  2.50
+|   |   |   |   |   |   |   |--- offerid_Offer_1809975416 <= 0.50
+|   |   |   |   |   |   |   |   |--- offerid_Offer_1496984823 <= 0.50
+|   |   |   |   |   |   |   |   |   |--- monthlycost <= 105.83
+|   |   |   |   |   |   |   |   |   |   |--- class: A_Denied
+|   |   |   |   |   |   |   |   |   |--- monthlycost >  105.83
+|   |   |   |   |   |   |   |   |   |   |--- class: A_Incomplete
+|   |   |   |   |   |   |   |   |--- offerid_Offer_1496984823 >  0.50
+|   |   |   |   |   |   |   |   |   |--- class: A_Denied
+|   |   |   |   |   |   |   |--- offerid_Offer_1809975416 >  0.50
+|   |   |   |   |   |   |   |   |--- class: A_Denied
+|   |   |   |   |   |--- O_Create Offer >  1.50
+|   |   |   |   |   |   |--- eventorigin_Offer <= 0.50
+|   |   |   |   |   |   |   |--- offerid_Offer_1930764161 <= 0.50
+|   |   |   |   |   |   |   |   |--- org_User_48 <= 0.50
+|   |   |   |   |   |   |   |   |   |--- offerid_Offer_1573424982 <= 0.50
+|   |   |   |   |   |   |   |   |   |   |--- class: A_Denied
+|   |   |   |   |   |   |   |   |   |--- offerid_Offer_1573424982 >  0.50
+|   |   |   |   |   |   |   |   |   |   |--- class: A_Incomplete
+|   |   |   |   |   |   |   |   |--- org_User_48 >  0.50
+|   |   |   |   |   |   |   |   |   |--- class: A_Incomplete
+|   |   |   |   |   |   |   |--- offerid_Offer_1930764161 >  0.50
+|   |   |   |   |   |   |   |   |--- W_Call incomplete files <= 7.50
+|   |   |   |   |   |   |   |   |   |--- class: A_Incomplete
+|   |   |   |   |   |   |   |   |--- W_Call incomplete files >  7.50
+|   |   |   |   |   |   |   |   |   |--- class: O_Accepted
+|   |   |   |   |   |   |--- eventorigin_Offer >  0.50
+|   |   |   |   |   |   |   |--- offerid_Offer_1161524806 <= 0.50
+|   |   |   |   |   |   |   |   |--- org_User_31 <= 0.50
+|   |   |   |   |   |   |   |   |   |--- offerid_Offer_154935391 <= 0.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Accepted
+|   |   |   |   |   |   |   |   |   |--- offerid_Offer_154935391 >  0.50
+|   |   |   |   |   |   |   |   |   |   |--- class: A_Incomplete
+|   |   |   |   |   |   |   |   |--- org_User_31 >  0.50
+|   |   |   |   |   |   |   |   |   |--- W_Call after offers <= 22.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Accepted
+|   |   |   |   |   |   |   |   |   |--- W_Call after offers >  22.50
+|   |   |   |   |   |   |   |   |   |   |--- class: A_Incomplete
+|   |   |   |   |   |   |   |--- offerid_Offer_1161524806 >  0.50
+|   |   |   |   |   |   |   |   |--- class: A_Incomplete
+|   |   |   |   |--- org_User_45 >  0.50
+|   |   |   |   |   |--- eventid_Workitem_1094767528 <= 0.50
+|   |   |   |   |   |   |--- O_Created <= 3.00
+|   |   |   |   |   |   |   |--- O_Created <= 1.50
+|   |   |   |   |   |   |   |   |--- time_weekday <= 0.50
+|   |   |   |   |   |   |   |   |   |--- class: A_Denied
+|   |   |   |   |   |   |   |   |--- time_weekday >  0.50
+|   |   |   |   |   |   |   |   |   |--- class: A_Incomplete
+|   |   |   |   |   |   |   |--- O_Created >  1.50
+|   |   |   |   |   |   |   |   |--- W_Validate application <= 13.50
+|   |   |   |   |   |   |   |   |   |--- class: A_Incomplete
+|   |   |   |   |   |   |   |   |--- W_Validate application >  13.50
+|   |   |   |   |   |   |   |   |   |--- W_Call incomplete files <= 15.50
+|   |   |   |   |   |   |   |   |   |   |--- class: A_Incomplete
+|   |   |   |   |   |   |   |   |   |--- W_Call incomplete files >  15.50
+|   |   |   |   |   |   |   |   |   |   |--- class: A_Denied
+|   |   |   |   |   |   |--- O_Created >  3.00
+|   |   |   |   |   |   |   |--- class: A_Denied
+|   |   |   |   |   |--- eventid_Workitem_1094767528 >  0.50
+|   |   |   |   |   |   |--- class: A_Incomplete
+|   |   |   |--- offerid_Offer_1124623742 >  0.50
+|   |   |   |   |--- class: A_Denied
+|   |   |--- lifecycle_suspend >  0.50
+|   |   |   |--- offerid_Offer_1729284540 <= 0.50
+|   |   |   |   |--- eventid_Workitem_1904204942 <= 0.50
+|   |   |   |   |   |--- eventid_Workitem_935305401 <= 0.50
+|   |   |   |   |   |   |--- eventid_Workitem_2075202396 <= 0.50
+|   |   |   |   |   |   |   |--- A_Submitted <= 0.50
+|   |   |   |   |   |   |   |   |--- O_Created <= 1.50
+|   |   |   |   |   |   |   |   |   |--- monthlycost <= 352.92
+|   |   |   |   |   |   |   |   |   |   |--- class: A_Incomplete
+|   |   |   |   |   |   |   |   |   |--- monthlycost >  352.92
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Accepted
+|   |   |   |   |   |   |   |   |--- O_Created >  1.50
+|   |   |   |   |   |   |   |   |   |--- offeredamount <= 8500.00
+|   |   |   |   |   |   |   |   |   |   |--- class: A_Incomplete
+|   |   |   |   |   |   |   |   |   |--- offeredamount >  8500.00
+|   |   |   |   |   |   |   |   |   |   |--- class: A_Incomplete
+|   |   |   |   |   |   |   |--- A_Submitted >  0.50
+|   |   |   |   |   |   |   |   |--- W_Handle leads <= 2.50
+|   |   |   |   |   |   |   |   |   |--- W_Shortened completion  <= 1.50
+|   |   |   |   |   |   |   |   |   |   |--- class: A_Incomplete
+|   |   |   |   |   |   |   |   |   |--- W_Shortened completion  >  1.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Accepted
+|   |   |   |   |   |   |   |   |--- W_Handle leads >  2.50
+|   |   |   |   |   |   |   |   |   |--- class: A_Incomplete
+|   |   |   |   |   |   |--- eventid_Workitem_2075202396 >  0.50
+|   |   |   |   |   |   |   |--- class: A_Incomplete
+|   |   |   |   |   |--- eventid_Workitem_935305401 >  0.50
+|   |   |   |   |   |   |--- class: A_Incomplete
+|   |   |   |   |--- eventid_Workitem_1904204942 >  0.50
+|   |   |   |   |   |--- class: A_Incomplete
+|   |   |   |--- offerid_Offer_1729284540 >  0.50
+|   |   |   |   |--- class: A_Incomplete
+|   |--- offerid_Offer_1579273034 >  0.50
+|   |   |--- class: A_Denied
+|--- org_User_41 >  0.50
+|   |--- lifecycle_complete <= 0.50
+|   |   |--- O_Sent (mail and online) <= 1.50
+|   |   |   |--- W_Call incomplete files <= 1.00
+|   |   |   |   |--- class: A_Denied
+|   |   |   |--- W_Call incomplete files >  1.00
+|   |   |   |   |--- class: A_Incomplete
+|   |   |--- O_Sent (mail and online) >  1.50
+|   |   |   |--- class: A_Incomplete
+|   |--- lifecycle_complete >  0.50
+|   |   |--- offerid_Offer_1567191399 <= 0.50
+|   |   |   |--- offerid_Offer_826031969 <= 0.50
+|   |   |   |   |--- eventid_Workitem_1311478291 <= 0.50
+|   |   |   |   |   |--- offerid_Offer_1660730722 <= 0.50
+|   |   |   |   |   |   |--- eventid_Workitem_1747431771 <= 0.50
+|   |   |   |   |   |   |   |--- eventid_Workitem_215526628 <= 0.50
+|   |   |   |   |   |   |   |   |--- eventid_Workitem_1650991177 <= 0.50
+|   |   |   |   |   |   |   |   |   |--- eventid_Workitem_11666930 <= 0.50
+|   |   |   |   |   |   |   |   |   |   |--- class: A_Incomplete
+|   |   |   |   |   |   |   |   |   |--- eventid_Workitem_11666930 >  0.50
+|   |   |   |   |   |   |   |   |   |   |--- class: A_Incomplete
+|   |   |   |   |   |   |   |   |--- eventid_Workitem_1650991177 >  0.50
+|   |   |   |   |   |   |   |   |   |--- class: A_Incomplete
+|   |   |   |   |   |   |   |--- eventid_Workitem_215526628 >  0.50
+|   |   |   |   |   |   |   |   |--- class: A_Incomplete
+|   |   |   |   |   |   |--- eventid_Workitem_1747431771 >  0.50
+|   |   |   |   |   |   |   |--- class: A_Incomplete
+|   |   |   |   |   |--- offerid_Offer_1660730722 >  0.50
+|   |   |   |   |   |   |--- class: A_Incomplete
+|   |   |   |   |--- eventid_Workitem_1311478291 >  0.50
+|   |   |   |   |   |--- class: A_Incomplete
+|   |   |   |--- offerid_Offer_826031969 >  0.50
+|   |   |   |   |--- class: A_Incomplete
+|   |   |--- offerid_Offer_1567191399 >  0.50
+|   |   |   |--- class: A_Incomplete

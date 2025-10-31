@@ -1,0 +1,4 @@
+|--- org_User_3 <= 0.50
+|   |--- class: O_Accepted
+|--- org_User_3 >  0.50
+|   |--- class: A_Denied

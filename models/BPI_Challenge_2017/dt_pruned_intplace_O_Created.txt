@@ -1,0 +1,22 @@
+|--- O_Returned <= 0.50
+|   |--- W_Handle leads <= 1.00
+|   |   |--- W_Complete application <= 3.50
+|   |   |   |--- class: O_Sent (mail and online)
+|   |   |--- W_Complete application >  3.50
+|   |   |   |--- class: O_Sent (mail and online)
+|   |--- W_Handle leads >  1.00
+|   |   |--- action_statechange <= 0.50
+|   |   |   |--- class: O_Sent (mail and online)
+|   |   |--- action_statechange >  0.50
+|   |   |   |--- class: O_Sent (mail and online)
+|--- O_Returned >  0.50
+|   |--- org_User_112 <= 0.50
+|   |   |--- O_Sent (mail and online) <= 1.50
+|   |   |   |--- class: O_Sent (online only)
+|   |   |--- O_Sent (mail and online) >  1.50
+|   |   |   |--- class: O_Sent (online only)
+|   |--- org_User_112 >  0.50
+|   |   |--- O_Create Offer <= 2.50
+|   |   |   |--- class: O_Sent (online only)
+|   |   |--- O_Create Offer >  2.50
+|   |   |   |--- class: O_Sent (online only)

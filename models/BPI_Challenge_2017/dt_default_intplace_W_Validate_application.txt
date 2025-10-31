@@ -1,0 +1,76 @@
+|--- org_User_3 <= 0.50
+|   |--- offerid_Offer_820878220 <= 0.50
+|   |   |--- eventid_Workitem_834193842 <= 0.50
+|   |   |   |--- eventid_Workitem_173208266 <= 0.50
+|   |   |   |   |--- org_User_67 <= 0.50
+|   |   |   |   |   |--- offerid_Offer_1556054408 <= 0.50
+|   |   |   |   |   |   |--- offerid_Offer_2070715652 <= 0.50
+|   |   |   |   |   |   |   |--- org_User_30 <= 0.50
+|   |   |   |   |   |   |   |   |--- eventid_Workitem_263794553 <= 0.50
+|   |   |   |   |   |   |   |   |   |--- offerid_Offer_1321945062 <= 0.50
+|   |   |   |   |   |   |   |   |   |   |--- class: O_Accepted
+|   |   |   |   |   |   |   |   |   |--- offerid_Offer_1321945062 >  0.50
+|   |   |   |   |   |   |   |   |   |   |--- class: A_Denied
+|   |   |   |   |   |   |   |   |--- eventid_Workitem_263794553 >  0.50
+|   |   |   |   |   |   |   |   |   |--- class: A_Denied
+|   |   |   |   |   |   |   |--- org_User_30 >  0.50
+|   |   |   |   |   |   |   |   |--- eventid_Workitem_1017502464 <= 0.50
+|   |   |   |   |   |   |   |   |   |--- offerid_Offer_955471129 <= 0.50
+|   |   |   |   |   |   |   |   |   |   |--- class: A_Denied
+|   |   |   |   |   |   |   |   |   |--- offerid_Offer_955471129 >  0.50
+|   |   |   |   |   |   |   |   |   |   |--- class: A_Validating
+|   |   |   |   |   |   |   |   |--- eventid_Workitem_1017502464 >  0.50
+|   |   |   |   |   |   |   |   |   |--- class: A_Denied
+|   |   |   |   |   |   |--- offerid_Offer_2070715652 >  0.50
+|   |   |   |   |   |   |   |--- class: A_Denied
+|   |   |   |   |   |--- offerid_Offer_1556054408 >  0.50
+|   |   |   |   |   |   |--- class: A_Denied
+|   |   |   |   |--- org_User_67 >  0.50
+|   |   |   |   |   |--- eventid_Workitem_205752585 <= 0.50
+|   |   |   |   |   |   |--- W_Validate application <= 1.00
+|   |   |   |   |   |   |   |--- class: A_Denied
+|   |   |   |   |   |   |--- W_Validate application >  1.00
+|   |   |   |   |   |   |   |--- eventid_Workitem_1360672060 <= 0.50
+|   |   |   |   |   |   |   |   |--- class: A_Validating
+|   |   |   |   |   |   |   |--- eventid_Workitem_1360672060 >  0.50
+|   |   |   |   |   |   |   |   |--- class: A_Validating
+|   |   |   |   |   |--- eventid_Workitem_205752585 >  0.50
+|   |   |   |   |   |   |--- class: A_Denied
+|   |   |   |--- eventid_Workitem_173208266 >  0.50
+|   |   |   |   |--- class: A_Denied
+|   |   |--- eventid_Workitem_834193842 >  0.50
+|   |   |   |--- class: A_Denied
+|   |--- offerid_Offer_820878220 >  0.50
+|   |   |--- class: A_Denied
+|--- org_User_3 >  0.50
+|   |--- offerid_Offer_588810222 <= 0.50
+|   |   |--- eventid_Workitem_574124673 <= 0.50
+|   |   |   |--- offerid_Offer_86559640 <= 0.50
+|   |   |   |   |--- W_Handle leads <= 4.00
+|   |   |   |   |   |--- offerid_Offer_1038670306 <= 0.50
+|   |   |   |   |   |   |--- offerid_Offer_61306121 <= 0.50
+|   |   |   |   |   |   |   |--- eventid_Workitem_906070352 <= 0.50
+|   |   |   |   |   |   |   |   |--- offerid_Offer_250802818 <= 0.50
+|   |   |   |   |   |   |   |   |   |--- A_Denied <= 0.50
+|   |   |   |   |   |   |   |   |   |   |--- class: A_Validating
+|   |   |   |   |   |   |   |   |   |--- A_Denied >  0.50
+|   |   |   |   |   |   |   |   |   |   |--- class: A_Denied
+|   |   |   |   |   |   |   |   |--- offerid_Offer_250802818 >  0.50
+|   |   |   |   |   |   |   |   |   |--- class: A_Validating
+|   |   |   |   |   |   |   |--- eventid_Workitem_906070352 >  0.50
+|   |   |   |   |   |   |   |   |--- class: A_Validating
+|   |   |   |   |   |   |--- offerid_Offer_61306121 >  0.50
+|   |   |   |   |   |   |   |--- class: A_Denied
+|   |   |   |   |   |--- offerid_Offer_1038670306 >  0.50
+|   |   |   |   |   |   |--- class: A_Validating
+|   |   |   |   |--- W_Handle leads >  4.00
+|   |   |   |   |   |--- W_Assess potential fraud <= 4.50
+|   |   |   |   |   |   |--- class: A_Validating
+|   |   |   |   |   |--- W_Assess potential fraud >  4.50
+|   |   |   |   |   |   |--- class: A_Validating
+|   |   |   |--- offerid_Offer_86559640 >  0.50
+|   |   |   |   |--- class: A_Validating
+|   |   |--- eventid_Workitem_574124673 >  0.50
+|   |   |   |--- class: A_Validating
+|   |--- offerid_Offer_588810222 >  0.50
+|   |   |--- class: A_Validating
