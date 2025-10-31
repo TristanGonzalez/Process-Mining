@@ -10,7 +10,11 @@ import matplotlib.pyplot as plt
 from sklearn.tree import export_text, export_graphviz, plot_tree
 import graphviz
 import yaml
-
+from joblib import Parallel, delayed
+import multiprocessing
+from tqdm import tqdm
+from tqdm_joblib import tqdm_joblib
+import scipy.sparse
 
 class DecisionMiningML:
     """Train decision trees per decision point from CSVs.
@@ -128,10 +132,11 @@ class DecisionMiningML:
                 # too many unique values -> drop to avoid overfitting (e.g., raw timestamps)
                 X = X.drop(columns=[c])
 
-        X = pd.get_dummies(X, drop_first=True)
+        X = pd.get_dummies(X, sparse=True, drop_first=True, dtype=np.float32)
+        X_sparse = scipy.sparse.csr_matrix(X.values)
 
         # Align types
-        X_vals = X.values
+        X_vals = X_sparse
         # Encode y
         labels = sorted(y_raw.unique())
         label_map = {lab: i for i, lab in enumerate(labels)}
@@ -149,28 +154,26 @@ class DecisionMiningML:
 
         results = {}
 
-        for dp, group in self.df.groupby('decision_point'):
-            # For each decision point, we have rows where 'activity' is the observed choice
+        def _train_single_decision_point(dp, group):
+            entry = {}
+            warnings = []
             try:
                 X, y, meta = self._prepare_features(group)
             except Exception as e:
-                results[dp] = {'error': str(e)}
-                continue
+                warnings.append(f"feature_prep_error: {e}")
+                return dp, {'error': str(e)}
 
-            # split
             if len(np.unique(y)) < 2:
-                results[dp] = {'error': 'Only one activity present, cannot train classifier'}
-                continue
+                return dp, {'error': 'Only one activity present, cannot train classifier'}
 
             X_train, X_test, y_train, y_test = train_test_split(
-                X, y, test_size=test_size, random_state=random_state, stratify=y if len(np.unique(y)) > 1 else None
+                X, y, test_size=test_size, random_state=random_state,
+                stratify=y if len(np.unique(y)) > 1 else None
             )
 
-            # default tree
             clf = DecisionTreeClassifier(**self.tree_params)
             clf.fit(X_train, y_train)
 
-            # pruned tree (aggressive)
             pruned_params = self.tree_params.copy()
             pruned_params.update({
                 "max_depth": self.prune_depth,
@@ -179,7 +182,6 @@ class DecisionMiningML:
             clf_pruned = DecisionTreeClassifier(**pruned_params)
             clf_pruned.fit(X_train, y_train)
 
-            # evaluate
             def eval_model(m, Xs, ys):
                 ypred = m.predict(Xs)
                 return {
@@ -194,116 +196,98 @@ class DecisionMiningML:
             eval_pruned = eval_model(clf_pruned, X_test, y_test)
 
             safe_dp = str(dp).replace(' ', '_').replace('/', '_')
-            default_path = None
-            pruned_path = None
-
-            # prepare result entry
             entry = {
                 'n_samples': int(len(group)),
                 'meta': meta,
-                # models are kept in-memory only
-                'default_model': None,
-                'pruned_model': None,
                 'eval_default': eval_default,
                 'eval_pruned': eval_pruned,
             }
 
-            # save textual rules
+            # === Save textual rules and visuals (same as your code) ===
             try:
-                # Map class indices back to activity names
                 inv_label_map = {v: k for k, v in meta['label_map'].items()}
                 class_names = [inv_label_map[int(c)] for c in clf.classes_]
-                print("clf.classes_:", clf.classes_, "class_names_for_clf:", class_names)
+                class_names_pruned = [inv_label_map[int(c)] for c in clf_pruned.classes_]
 
-                # Export readable textual rules with activity names instead of class numbers
-                rules_default = export_text(
-                    clf,
-                    feature_names=meta['feature_names'],
-                    show_weights=False,
-                    class_names=class_names,
-                    show_names=True
-                )
-
-                class_names_for_clf_pruned = [inv_label_map[int(c)] for c in clf_pruned.classes_]
-                rules_pruned = export_text(
-                    clf_pruned,
-                    feature_names=meta['feature_names'],
-                    show_weights=False,
-                    class_names=class_names_for_clf_pruned,
-                    show_names=True
-                )
-
+                rules_default = export_text(clf, feature_names=meta['feature_names'],
+                                            show_weights=False, class_names=class_names)
+                rules_pruned = export_text(clf_pruned, feature_names=meta['feature_names'],
+                                        show_weights=False, class_names=class_names_pruned)
+                
                 rules_default_path = os.path.join(self.model_dir, f"dt_default_{safe_dp}.txt")
                 rules_pruned_path = os.path.join(self.model_dir, f"dt_pruned_{safe_dp}.txt")
+
                 with open(rules_default_path, 'w', encoding='utf-8') as f:
                     f.write(rules_default)
                 with open(rules_pruned_path, 'w', encoding='utf-8') as f:
                     f.write(rules_pruned)
+
                 entry.update({'rules_default': rules_default_path, 'rules_pruned': rules_pruned_path})
             except Exception as e:
+                print("Exception Print rules:", e)
+                warnings.append(f"rules_error: {e}")
                 entry.setdefault('warnings', []).append(f"rules_error: {e}")
 
-            # try Graphviz export (DOT -> PNG). Fallback to matplotlib plotting if graphviz not available.
-            try:
-                dot_default = export_graphviz(clf, out_file=None, feature_names=meta['feature_names'], class_names=[str(x) for x in meta['label_map'].keys()], filled=True, rounded=True)
-                g_default = graphviz.Source(dot_default)
-                vis_default = os.path.join(self.model_dir, f"dt_default_{safe_dp}.png")
-                g_default.format = 'png'
-                g_default.render(filename=os.path.splitext(vis_default)[0], cleanup=True)
-
-                dot_pruned = export_graphviz(clf_pruned, out_file=None, feature_names=meta['feature_names'], class_names=[str(x) for x in meta['label_map'].keys()], filled=True, rounded=True)
-                g_pruned = graphviz.Source(dot_pruned)
-                vis_pruned = os.path.join(self.model_dir, f"dt_pruned_{safe_dp}.png")
-                g_pruned.format = 'png'
-                g_pruned.render(filename=os.path.splitext(vis_pruned)[0], cleanup=True)
-
-                entry.update({'viz_default': vis_default, 'viz_pruned': vis_pruned})
-            except Exception:
-                # fallback to matplotlib plotting
-                try:
-                    vis_default = os.path.join(self.model_dir, f"dt_default_{safe_dp}.png")
-                    plt.figure(figsize=(12, 8))
-                    sktree.plot_tree(clf, feature_names=meta['feature_names'], class_names=[str(x) for x in meta['label_map'].keys()], filled=True, fontsize=8)
-                    plt.title(f"Decision Tree (default) - {dp}")
-                    plt.tight_layout()
-                    plt.savefig(vis_default)
-                    plt.close()
-
-                    vis_pruned = os.path.join(self.model_dir, f"dt_pruned_{safe_dp}.png")
-                    plt.figure(figsize=(12, 8))
-                    sktree.plot_tree(clf_pruned, feature_names=meta['feature_names'], class_names=[str(x) for x in meta['label_map'].keys()], filled=True, fontsize=8)
-                    plt.title(f"Decision Tree (pruned) - {dp}")
-                    plt.tight_layout()
-                    plt.savefig(vis_pruned)
-                    plt.close()
-
-                    entry.update({'viz_default': vis_default, 'viz_pruned': vis_pruned})
-                except Exception as e:
-                    entry.setdefault('warnings', []).append(f"viz_error: {e}")
-
-            # attach the trained model objects in-memory under a separate key
-            # --- Save evaluation results to a text file (per decision point) ---
+            # === Save evaluation metrics ===
             try:
                 eval_path = os.path.join(self.model_dir, f"eval_{safe_dp}.txt")
                 with open(eval_path, 'w', encoding='utf-8') as f:
-                    f.write(f"Decision point: {dp}\n")
-                    f.write(f"Samples: {entry['n_samples']}\n\n")
-
+                    f.write(f"Decision point: {dp}\nSamples: {entry['n_samples']}\n\n")
                     f.write("=== Default tree ===\n")
-                    for k, v in entry['eval_default'].items():
+                    for k, v in eval_default.items():
                         f.write(f"{k}: {v}\n")
-
                     f.write("\n=== Pruned tree ===\n")
-                    for k, v in entry['eval_pruned'].items():
+                    for k, v in eval_pruned.items():
                         f.write(f"{k}: {v}\n")
-
                 entry['eval_path'] = eval_path
             except Exception as e:
+                warnings.append(f"eval_save_error: {e}")
                 entry.setdefault('warnings', []).append(f"eval_save_error: {e}")
 
-            # attach the trained model objects in-memory under a separate key
+            entry['warnings'] = warnings
             entry['model_objects'] = {'default': clf, 'pruned': clf_pruned}
-            results[dp] = entry
+            return dp, entry
+
+        # === Parallel execution ===
+        groups = list(self.df.groupby('decision_point'))
+        n_jobs = max(1, multiprocessing.cpu_count() - 1)
+
+        with tqdm_joblib(tqdm(desc="Training decision trees", total=len(groups), unit="dp")):
+            parallel_results = Parallel(n_jobs=n_jobs)(
+                delayed(_train_single_decision_point)(dp, group)
+                for dp, group in groups
+            )
+
+        # === Combine results back into dict ===
+        results = dict(parallel_results)
+        for dp, entry in tqdm(results.items(), desc="Generating tree visuals", unit="dp"):
+            try:
+                clf = entry['model_objects']['default']
+                clf_pruned = entry['model_objects']['pruned']
+                meta = entry['meta']
+                safe_dp = "".join(c if c.isalnum() or c in "_-" else "_" for c in str(dp))
+
+                vis_default = os.path.join(self.model_dir, f"dt_default_{safe_dp}.png")
+                plt.figure(figsize=(12, 8))
+                sktree.plot_tree(clf, feature_names=meta['feature_names'],
+                                class_names=[str(x) for x in meta['label_map'].keys()],
+                                filled=True, fontsize=8)
+                plt.tight_layout()
+                plt.savefig(vis_default)
+                plt.close()
+
+                vis_pruned = os.path.join(self.model_dir, f"dt_pruned_{safe_dp}.png")
+                plt.figure(figsize=(12, 8))
+                sktree.plot_tree(clf_pruned, feature_names=meta['feature_names'],
+                                class_names=[str(x) for x in meta['label_map'].keys()],
+                                filled=True, fontsize=8)
+                plt.tight_layout()
+                plt.savefig(vis_pruned)
+                plt.close()
+
+                entry.update({'viz_default': vis_default, 'viz_pruned': vis_pruned})
+            except Exception as e:
+                entry.setdefault('warnings', []).append(f"viz_error: {e}")
 
         return results
 

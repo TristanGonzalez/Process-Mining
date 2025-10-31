@@ -74,7 +74,7 @@ print("7. Decision Mining... \n")
 
 dm = DecisionMiningML(path)  # YAML parameters are loaded automatically
 
-res = dm.train_for_all(test_size=0.3)  # pruning params now come from YAML
+res = dm.train_for_all(test_size=0.3)
 
 out = {}
 for k, v in res.items():

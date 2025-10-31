@@ -2,15 +2,15 @@ Decision point: intplace_O_Created
 Samples: 41733
 
 === Default tree ===
-accuracy: 0.969888178913738
-precision_macro: 0.8147577473473654
-recall_macro: 0.9334500150224453
-f1_macro: 0.8631600806780453
+accuracy: 0.9417731629392971
+precision_macro: 0.7205106684668606
+recall_macro: 0.9046279072850023
+f1_macro: 0.7794396065528989
 n_classes: 2
 
 === Pruned tree ===
-accuracy: 0.8522364217252396
-precision_macro: 0.5820475951814575
-recall_macro: 0.7366134548089498
-f1_macro: 0.6016544702513522
+accuracy: 0.9553514376996806
+precision_macro: 0.758749136168491
+recall_macro: 0.7494416289632746
+f1_macro: 0.7539961287856636
 n_classes: 2
