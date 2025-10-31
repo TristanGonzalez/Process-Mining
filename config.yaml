@@ -1,9 +1,9 @@
 
 
 # Path to the XES log2
-#log_path: "data/xes/running-example.xes"
-log_path: "data/xes/Road_Traffic_Fine_Management_Process.xes"
-#log_path: "data/xes/BPI Challenge 2017.xes"
+# log_path: "data/xes/running-example.xes"
+# log_path: "data/xes/Road_Traffic_Fine_Management_Process.xes"
+log_path: "data/xes/BPI Challenge 2017.xes"
 
 # Process discovery method: "alpha", "heuristic" or "inductive"
 #process_model_type: "alpha"
@@ -21,3 +21,19 @@ heuristic:
 inductive:
   noise_threshold: 0.2
   disable_fallthroughs: false
+
+decision_tree:
+  # Default tree (baseline)
+  criterion: "gini"
+  max_depth: 10
+  min_samples_split: 2
+  min_samples_leaf: 1
+  max_features: "sqrt"
+  random_state: 42
+  class_weight: "balanced"
+  ccp_alpha: 0.0
+
+  # Aggressive pruning parameters
+  prune_depth: 3
+  prune_min_samples_leaf: 10
+

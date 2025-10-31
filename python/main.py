@@ -5,7 +5,7 @@ from decision_mining_ml import DecisionMiningML
 import json
 
 import os
-print(os.getcwd())
+# print(os.getcwd())
 
 # Load Yaml Config
 print("1. Opening config.yaml... \n")
@@ -72,10 +72,9 @@ df.to_csv(output_csv, index=False, sep=";")
 # Saving Data Frame
 print("7. Decision Mining... \n")
 
-dm = DecisionMiningML(path)
+dm = DecisionMiningML(path)  # YAML parameters are loaded automatically
 
-res = dm.train_for_all(test_size=0.3, prune_depth=3, prune_min_samples_leaf=50)
-
+res = dm.train_for_all(test_size=0.3)  # pruning params now come from YAML
 
 out = {}
 for k, v in res.items():

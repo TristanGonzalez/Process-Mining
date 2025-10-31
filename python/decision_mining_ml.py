@@ -7,8 +7,9 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 from sklearn import tree as sktree
 import matplotlib.pyplot as plt
-from sklearn.tree import export_text, export_graphviz
+from sklearn.tree import export_text, export_graphviz, plot_tree
 import graphviz
+import yaml
 
 
 class DecisionMiningML:
@@ -21,7 +22,7 @@ class DecisionMiningML:
     Error modes: raises FileNotFoundError for missing files, ValueError for missing required columns.
     """
 
-    def __init__(self, csv_path: str, model_dir: str = "models"):
+    def __init__(self, csv_path: str, model_dir: str = "models", config_path: str = "config.yaml"):
         if not os.path.exists(csv_path):
             raise FileNotFoundError(csv_path)
         self.csv_path = csv_path
@@ -31,12 +32,32 @@ class DecisionMiningML:
         except Exception:
             self.df = pd.read_csv(csv_path)
 
+        with open(config_path, 'r') as f:
+            self.config = yaml.safe_load(f)
+        tree_config = self.config.get("decision_tree", {})
+
+        # Extract pruning-related params
+        self.prune_depth = tree_config.pop('prune_depth', 3)
+        self.prune_min_samples_leaf = tree_config.pop('prune_min_samples_leaf', 10)
+
+        self.tree_params = tree_config
+
+        self.log_path = self.config.get('log_path')
+        if not self.log_path:
+            raise ValueError("log_path not found in config.yaml")
+
+        # prepare model_dir based on log_path
+        log_basename = os.path.basename(self.log_path)        # "BPI Challenge 2017.xes"
+        log_stem = os.path.splitext(log_basename)[0]          # "BPI Challenge 2017"
+        safe_stem = log_stem.replace(' ', '_')                # "BPI_Challenge_2017"
+        self.model_dir = os.path.join('models', safe_stem)
+        os.makedirs(self.model_dir, exist_ok=True)
+
         # drop unnamed index columns that often appear when reading CSVs
         unnamed_cols = [c for c in self.df.columns if str(c).lower().startswith('unnamed') or str(c) == 'Unnamed: 0']
         if unnamed_cols:
             self.df = self.df.drop(columns=unnamed_cols)
-        self.model_dir = model_dir
-        os.makedirs(self.model_dir, exist_ok=True)
+
 
     def _validate(self):
         if 'decision_point' not in self.df.columns or 'activity' not in self.df.columns:
@@ -119,13 +140,13 @@ class DecisionMiningML:
         meta = {'label_map': label_map, 'feature_names': list(X.columns)}
         return X_vals, y, meta
 
-    def train_for_all(self, test_size: float = 0.3, random_state: int = 42,
-                      prune_depth: int = 3, prune_min_samples_leaf: int = 10) -> Dict[str, Any]:
+    def train_for_all(self, test_size: float = 0.3, random_state: int = 42) -> Dict[str, Any]:
         """Train two trees per decision_point: a default tree and an aggressively pruned tree.
 
         Returns a dict keyed by decision_point with training/eval info and model paths.
         """
         self._validate()
+
         results = {}
 
         for dp, group in self.df.groupby('decision_point'):
@@ -146,13 +167,16 @@ class DecisionMiningML:
             )
 
             # default tree
-            clf = DecisionTreeClassifier(random_state=random_state)
+            clf = DecisionTreeClassifier(**self.tree_params)
             clf.fit(X_train, y_train)
 
             # pruned tree (aggressive)
-            clf_pruned = DecisionTreeClassifier(max_depth=prune_depth,
-                                                min_samples_leaf=prune_min_samples_leaf,
-                                                random_state=random_state)
+            pruned_params = self.tree_params.copy()
+            pruned_params.update({
+                "max_depth": self.prune_depth,
+                "min_samples_leaf": self.prune_min_samples_leaf,
+            })
+            clf_pruned = DecisionTreeClassifier(**pruned_params)
             clf_pruned.fit(X_train, y_train)
 
             # evaluate
@@ -169,9 +193,6 @@ class DecisionMiningML:
             eval_default = eval_model(clf, X_test, y_test)
             eval_pruned = eval_model(clf_pruned, X_test, y_test)
 
-            # NOTE: previously models were saved to disk with joblib, but this behavior
-            # was removed. We still keep the trained model objects in memory and include
-            # any exported artifacts (rules, visualizations) below.
             safe_dp = str(dp).replace(' ', '_').replace('/', '_')
             default_path = None
             pruned_path = None
@@ -189,8 +210,29 @@ class DecisionMiningML:
 
             # save textual rules
             try:
-                rules_default = export_text(clf, feature_names=meta['feature_names'])
-                rules_pruned = export_text(clf_pruned, feature_names=meta['feature_names'])
+                # Map class indices back to activity names
+                inv_label_map = {v: k for k, v in meta['label_map'].items()}
+                class_names = [inv_label_map[int(c)] for c in clf.classes_]
+                print("clf.classes_:", clf.classes_, "class_names_for_clf:", class_names)
+
+                # Export readable textual rules with activity names instead of class numbers
+                rules_default = export_text(
+                    clf,
+                    feature_names=meta['feature_names'],
+                    show_weights=False,
+                    class_names=class_names,
+                    show_names=True
+                )
+
+                class_names_for_clf_pruned = [inv_label_map[int(c)] for c in clf_pruned.classes_]
+                rules_pruned = export_text(
+                    clf_pruned,
+                    feature_names=meta['feature_names'],
+                    show_weights=False,
+                    class_names=class_names_for_clf_pruned,
+                    show_names=True
+                )
+
                 rules_default_path = os.path.join(self.model_dir, f"dt_default_{safe_dp}.txt")
                 rules_pruned_path = os.path.join(self.model_dir, f"dt_pruned_{safe_dp}.txt")
                 with open(rules_default_path, 'w', encoding='utf-8') as f:
@@ -240,11 +282,31 @@ class DecisionMiningML:
                     entry.setdefault('warnings', []).append(f"viz_error: {e}")
 
             # attach the trained model objects in-memory under a separate key
+            # --- Save evaluation results to a text file (per decision point) ---
+            try:
+                eval_path = os.path.join(self.model_dir, f"eval_{safe_dp}.txt")
+                with open(eval_path, 'w', encoding='utf-8') as f:
+                    f.write(f"Decision point: {dp}\n")
+                    f.write(f"Samples: {entry['n_samples']}\n\n")
+
+                    f.write("=== Default tree ===\n")
+                    for k, v in entry['eval_default'].items():
+                        f.write(f"{k}: {v}\n")
+
+                    f.write("\n=== Pruned tree ===\n")
+                    for k, v in entry['eval_pruned'].items():
+                        f.write(f"{k}: {v}\n")
+
+                entry['eval_path'] = eval_path
+            except Exception as e:
+                entry.setdefault('warnings', []).append(f"eval_save_error: {e}")
+
+            # attach the trained model objects in-memory under a separate key
             entry['model_objects'] = {'default': clf, 'pruned': clf_pruned}
             results[dp] = entry
 
         return results
 
+
     def load_model(self, model_path: str):
         raise RuntimeError("Models are not persisted to disk by default. Load from returned 'model_objects' in train_for_all results.")
-
