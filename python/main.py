@@ -59,6 +59,7 @@ df = data_processor.dataframe_from_dp(decision_points)
 
 print("Dataframe contains: ", len(df), " rows")
 
+
 path = f"data/decision_output/{data_processor.kind}.csv"
 
 
@@ -68,6 +69,7 @@ print("6. Saving Data Frame... \n")
 output_csv = config.get("output_csv", path)
 df.to_csv(output_csv, index=False, sep=";")
 
+print(df.head())
 
 # Saving Data Frame
 print("7. Decision Mining... \n")

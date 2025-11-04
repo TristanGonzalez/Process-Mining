@@ -106,4 +106,3 @@ class Data:
 
         df_decision_full = pd.DataFrame(rows)
         return df_decision_full
-
