@@ -4,5 +4,6 @@ scikit-learn
 joblib
 matplotlib
 graphviz
-tqdm 
+tqdm
+pm4py
 tqdm-joblib
