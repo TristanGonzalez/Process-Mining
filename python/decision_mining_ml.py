@@ -203,7 +203,7 @@ class DecisionMiningML:
                 'eval_pruned': eval_pruned,
             }
 
-            # === Save textual rules and visuals (same as your code) ===
+            # === Save textual rules and visuals ===
             try:
                 inv_label_map = {v: k for k, v in meta['label_map'].items()}
                 class_names = [inv_label_map[int(c)] for c in clf.classes_]
@@ -294,3 +294,4 @@ class DecisionMiningML:
 
     def load_model(self, model_path: str):
         raise RuntimeError("Models are not persisted to disk by default. Load from returned 'model_objects' in train_for_all results.")
+
